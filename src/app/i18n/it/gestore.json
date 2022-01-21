@@ -1,0 +1,37 @@
+{
+  "benzappApp": {
+    "gestore": {
+      "home": {
+        "title": "Elenco gestori",
+        "refreshListLabel": "Aggiorna lista",
+        "createLabel": "Regista un nuovo gestore",
+        "createOrEditLabel": "Genera o modifica un gestore",
+        "notFound": "No Gestores found",
+        "scenarioGestore": {
+          "createOrEditLabel": "Imposta prezzi"
+        }
+      },
+      "created": "&Egrave; stato registrato un nuovo gestore con id {{ param }}",
+      "updated": "&Egrave; stato aggiornato il gestore con id {{ param }}",
+      "deleted": "&Egrave; stato eliminato il gestore con id {{ param }}",
+      "delete": {
+        "question": "Sei sicuro di volere eliminare il gestore con id {{ id }}?"
+      },
+      "detail": {
+        "title": "Gestore"
+      },
+      "id": "ID",
+      "provincia": "Provincia",
+      "comune": "Comune",
+      "indirizzo": "Indirizzo",
+      "longitudine": "Longitudine",
+      "latitudine": "Latitudine",
+      "tipo": "Tipo",
+      "benzinaPrezzoAlLitro": "Benzina Prezzo Al Litro",
+      "gasolioPrezzoAlLitro": "Gasolio Prezzo Al Litro",
+      "owner": "Owner",
+      "rifornimento": "Rifornimento",
+      "marchio": "Marchio"
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "benzappApp": {
+    "cittadino": {
+      "home": {
+        "title": "Elenco cittadini",
+        "refreshListLabel": "Aggiorna lista",
+        "createLabel": "Nuovo cittadino",
+        "createOrEditLabel": "Registra o modifica cittadino",
+        "notFound": "No Cittadinos found"
+      },
+      "created": "&Egrave; stato registrato un nuovo cittadino con identificatore {{ param }}",
+      "updated": "&Egrave; stato aggiornato cittadino identificato da {{ param }}",
+      "deleted": "&Egrave; stato eliminato cittadino con identificatore {{ param }}",
+      "delete": {
+        "question": "Sei sicuro di volere eliminare cittadino {{ id }}?"
+      },
+      "detail": {
+        "title": "Cittadino"
+      },
+      "id": "ID",
+      "nome": "Nome",
+      "cognome": "Cognome",
+      "codiceFiscale": "Codice Fiscale",
+      "owner": "Owner",
+      "delega": "Delega",
+      "tessera": "Tessera",
+      "fascia": "Fascia"
+    }
+  }
+}

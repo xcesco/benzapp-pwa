@@ -1,0 +1,42 @@
+{
+  "benzappApp": {
+    "rifornimento": {
+      "home": {
+        "title": "Elenco rifornimenti",
+        "refreshListLabel": "Aggiorna lista",
+        "createLabel": "Nuovo rifornimento",
+        "createOrEditLabel": "Registra nuovo rifornimento",
+        "notFound": "Nessun rifornimento trovato"
+      },
+      "created": "&Egrave; stato generato un nuovo rifornimento con identificatore {{ param }}",
+      "updated": "&Egrave; stato aggiornato rifornimento identificato da {{ param }}",
+      "deleted": "&Egrave; stato eliminato rifornimento con identificatore {{ param }}",
+      "delete": {
+        "question": "Sei sicuro di volere eliminare il rifornimento {{ id }}?"
+      },
+      "detail": {
+        "title": "Rifornimento"
+      },
+      "tab_litri_erogati": "Litri erogati",
+      "benzinaPrezzoAlLitro": "Benzina",
+      "gasolioPrezzoAlLitro": "Gasolio",
+      "id": "ID",
+      "data": "Data",
+      "litriErogati": "Litri Erogati",
+      "importoDovuto": "Importo dovuto",
+      "sconto": "Sconto applicato",
+      "prezzoAlLitro": "Prezzo Al Litro",
+      "tipoCarburante": "Tipo Carburante",
+      "gestore": "Gestore",
+      "tessera": "Targa",
+      "qrcode": "QRCode",
+      "step": "Stati",
+      "prosegui": "Prosegui",
+      "lettore": "Lettore",
+      "camera": "Camera",
+      "importo": "Importo",
+      "riepilogo": "Riepilogo",
+      "invalido": "Lettura fallita"
+    }
+  }
+}
