@@ -4,9 +4,9 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import * as dayjs from 'dayjs';
 
-import { SERVER_API_URL } from 'app/app.constants';
-import { createRequestOption } from 'app/core/request/request-util';
 import { IRifornimento } from '../rifornimento.model';
+import {SERVER_API_URL} from "../../../app.constants";
+import {createRequestOption} from "../../../core/request/request-util";
 
 type EntityResponseType = HttpResponse<IRifornimento>;
 type EntityArrayResponseType = HttpResponse<IRifornimento[]>;

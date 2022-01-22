@@ -6,14 +6,12 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { ITessera } from '../tessera.model';
 
-import { ITEMS_PER_PAGE } from 'app/config/pagination.constants';
 import { TesseraService } from '../service/tessera.service';
 import { TesseraDeleteDialogComponent } from '../delete/tessera-delete-dialog.component';
-import { DataUtils } from 'app/core/util/data-util.service';
-import { DelegaService } from 'app/entities/delega/service/delega.service';
-import { IDelega } from 'app/entities/delega/delega.model';
-import { map } from 'rxjs/operators';
-import { AccountService } from 'app/core/auth/account.service';
+import {ITEMS_PER_PAGE} from "../../../config/pagination.constants";
+import {DelegaService} from "../../delega/service/delega.service";
+import {AccountService} from "../../../core/auth/account.service";
+import {DataUtils} from "../../../core/util/data-util.service";
 
 @Component({
   selector: 'jhi-tessera',

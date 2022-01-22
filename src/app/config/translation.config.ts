@@ -13,7 +13,7 @@ export class MissingTranslationHandlerImpl implements MissingTranslationHandler 
 
 export function translatePartialLoader(http: HttpClient): TranslateLoader {
   //TODO return new TranslateHttpLoader(http, 'i18n/', `.json?buildTimestamp=${process.env.BUILD_TIMESTAMP ?? ''}`);
-  return new TranslateHttpLoader(http, 'i18n/', `.json?buildTimestamp=''}`);
+  return new TranslateHttpLoader(http, 'i18n/', `.json?buildTimestamp=''`);
 }
 
 export function missingTranslationHandler(): MissingTranslationHandler {

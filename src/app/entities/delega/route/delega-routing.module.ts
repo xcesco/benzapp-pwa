@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { UserRouteAccessService } from 'app/core/auth/user-route-access.service';
 import { DelegaComponent } from '../list/delega.component';
 import { DelegaDetailComponent } from '../detail/delega-detail.component';
 import { DelegaUpdateComponent } from '../update/delega-update.component';
 import { DelegaRoutingResolveService } from './delega-routing-resolve.service';
+import {UserRouteAccessService} from "../../../core/auth/user-route-access.service";
 
 const delegaRoute: Routes = [
   {

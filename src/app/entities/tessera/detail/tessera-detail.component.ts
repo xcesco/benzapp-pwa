@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { ITessera } from '../tessera.model';
-import { DataUtils } from 'app/core/util/data-util.service';
+import {DataUtils} from "../../../core/util/data-util.service";
 
 @Component({
   selector: 'jhi-tessera-detail',

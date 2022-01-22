@@ -7,7 +7,6 @@ import {Account} from "../../core/auth/account.model";
 import {LoginService} from "../../login/login.service";
 import {AccountService} from "../../core/auth/account.service";
 import {ProfileService} from "../profiles/profile.service";
-import {GestoreService} from "../../entities/gestore/service/gestore.service";
 import {CittadinoService} from "../../entities/cittadino/service/cittadino.service";
 import {VERSION} from "../../app.constants";
 
@@ -35,7 +34,6 @@ export class NavbarComponent implements OnInit {
     private sessionStorage: SessionStorageService,
     private accountService: AccountService,
     private profileService: ProfileService,
-    private gestoreService: GestoreService,
     private cittadinoService: CittadinoService,
     private router: Router
   ) {
@@ -55,13 +53,7 @@ export class NavbarComponent implements OnInit {
       this.gestoreId = null;
 
       if (account != null) {
-        if (this.hasAuthority(['ROLE_PATROL_STATION'])) {
-          this.gestoreService.queryByOwner(account.login).subscribe(value => {
-            this.gestoreId = value.body?.[0]?.id;
-            this.account = account;
-            this.accountAuthenticated = true;
-          });
-        } else if (this.hasAuthority(['ROLE_USER'])) {
+       if (this.hasAuthority(['ROLE_USER'])) {
           this.cittadinoService.queryByOwner(account.login).subscribe(value => {
             this.userId = value.body?.[0]?.id;
             this.account = account;

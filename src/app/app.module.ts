@@ -16,7 +16,7 @@ import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {NgxWebstorageModule} from "ngx-webstorage";
 import {MissingTranslationHandler, TranslateLoader, TranslateModule, TranslateService} from "@ngx-translate/core";
 import {missingTranslationHandler, translatePartialLoader} from "./config/translation.config";
-import {NgbDateAdapter, NgbDatepickerConfig, NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgbDateAdapter, NgbDatepickerConfig} from '@ng-bootstrap/ng-bootstrap';
 import * as dayjs from "dayjs";
 import {locale} from "dayjs";
 import {fontAwesomeIcons} from "./config/font-awesome-icons";
@@ -28,11 +28,15 @@ import {PageRibbonComponent} from "./layouts/profiles/page-ribbon.component";
 import {NavbarComponent} from "./layouts/navbar/navbar.component";
 import {FooterComponent} from "./layouts/footer/footer.component";
 import {ErrorComponent} from "./layouts/error/error.component";
+import {EntityRoutingModule} from "./entities/entity-routing.module";
+import {HomeModule} from "./home/home.module";
 
 @NgModule({
   imports: [
     BrowserModule,
     SharedModule,
+    HomeModule,
+    EntityRoutingModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatToolbarModule,
@@ -58,7 +62,6 @@ import {ErrorComponent} from "./layouts/error/error.component";
         useFactory: missingTranslationHandler,
       },
     }),
-    NgbModule,
   ],
   providers: [
     Title,
@@ -67,7 +70,7 @@ import {ErrorComponent} from "./layouts/error/error.component";
     httpInterceptorProviders,
   ],
   declarations: [AppComponent, LockScreenComponent, MainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, ActiveMenuDirective, FooterComponent],
-  bootstrap: [AppComponent]
+  bootstrap: [MainComponent]
 })
 export class AppModule {
   constructor(iconLibrary: FaIconLibrary, dpConfig: NgbDatepickerConfig, translateService: TranslateService) {
