@@ -29,13 +29,6 @@ export class FcmMessagingService {
   }
 
   init() {
-    // console.log('FcmMessagingService > init')
-    // const serviceWorkerRegistration = await navigator
-    //   .serviceWorker
-    //   .register('/firebase-massaging-sw.js');
-    //
-    // console.log('produce ', serviceWorkerRegistration);
-
     this.tokenSubscription = this.fireMessaging.getToken.subscribe(value => {
       console.log('fcm token > ', value)
     });
