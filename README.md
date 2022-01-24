@@ -46,6 +46,10 @@ https://github.com/zhangxin511/PushDemo
 
 Per lavorare con service worker (https://medium.com/kabbage-engineering/angular-pwa-app-notification-using-firebase-cloud-messaging-d1b7bd171b98)
 http-server-spa
+
 `ng build --source-map`
 
 `http-server-spa dist/PushDemo/ index.html 18080`
+
+
+Angular
