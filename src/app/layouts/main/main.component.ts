@@ -3,6 +3,7 @@ import {Title} from '@angular/platform-browser';
 import {ActivatedRouteSnapshot, NavigationEnd, NavigationError, Router} from '@angular/router';
 import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
 import {AccountService} from "../../core/auth/account.service";
+import {AngularFireRemoteConfig} from "@angular/fire/compat/remote-config";
 
 @Component({
   selector: 'jhi-main',
@@ -51,7 +52,9 @@ export class MainComponent implements OnInit {
 
   private updateTitle(): void {
     let pageTitle = this.getPageTitle(this.router.routerState.snapshot.root);
-    if (!pageTitle) {
+    if (!
+      pageTitle
+    ) {
       pageTitle = 'global.title';
     }
     this.translateService.get(pageTitle).subscribe(title => this.titleService.setTitle(title));

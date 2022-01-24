@@ -5,17 +5,19 @@ import { map } from 'rxjs/operators';
 import * as dayjs from 'dayjs';
 
 import { ITessera } from '../tessera.model';
-import {SERVER_API_URL} from "../../../app.constants";
 import {createRequestOption} from "../../../core/request/request-util";
+import {RemoteConfigService} from "../../../core/config/remote-config.service";
 
 type EntityResponseType = HttpResponse<ITessera>;
 type EntityArrayResponseType = HttpResponse<ITessera[]>;
 
 @Injectable({ providedIn: 'root' })
 export class TesseraService {
-  public resourceUrl = SERVER_API_URL + 'api/tesseras';
+  get resourceUrl(): string {
+    return this.remoteConfigService.backendBaseUrl + 'api/tesseras';
+  }
 
-  constructor(protected http: HttpClient) {}
+  constructor(protected http: HttpClient, private remoteConfigService:RemoteConfigService) {}
 
   create(tessera: ITessera): Observable<EntityResponseType> {
     const copy = this.convertDateFromClient(tessera);

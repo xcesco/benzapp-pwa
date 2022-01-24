@@ -1,8 +1,14 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import {Component, OnInit, OnDestroy} from '@angular/core';
+import {Router} from '@angular/router';
+import {Subscription} from 'rxjs';
 import {Account} from "../core/auth/account.model";
 import {AccountService} from "../core/auth/account.service";
+import {RemoteConfigService} from "../core/config/remote-config.service";
+import {FcmMessagingService} from "../core/fcm/fcm-messaging.service";
+import {SwUpdate, SwPush} from '@angular/service-worker';
+import {environment} from "../../environments/environment";
+import {AngularFireMessaging} from "@angular/fire/compat/messaging";
+import {mergeMapTo} from 'rxjs/operators';
 
 
 @Component({
@@ -14,7 +20,23 @@ export class HomeComponent implements OnInit, OnDestroy {
   account: Account | null = null;
   authSubscription?: Subscription;
 
-  constructor(private accountService: AccountService, private router: Router) {}
+  constructor(private accountService: AccountService, private router: Router, private remoteConfigService: RemoteConfigService, private fcmMessagingService: FcmMessagingService) {
+    remoteConfigService.init();
+    fcmMessagingService.init();
+  }
+
+  requestPermission() {
+    this.fcmMessagingService.requestPermission()
+      .pipe(mergeMapTo(this.fcmMessagingService.tokenChanges()))
+      .subscribe(
+        (token) => {
+          console.log('Permission granted! Save to the server!', token);
+        },
+        (error) => {
+          console.error(error);
+        },
+      );
+  }
 
   ngOnInit(): void {
     this.authSubscription = this.accountService.getAuthenticationState().subscribe(account => (this.account = account));

@@ -1,4 +1,4 @@
-import {LOCALE_ID, NgModule} from '@angular/core';
+import {isDevMode, LOCALE_ID, NgModule} from '@angular/core';
 import {BrowserModule, Title} from '@angular/platform-browser';
 
 import {AppRoutingModule} from './app-routing.module';
@@ -8,8 +8,6 @@ import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
 import {ServiceWorkerModule} from '@angular/service-worker';
-import {environment} from '../environments/environment';
-import {LockScreenComponent} from './lock-screen/lock-screen.component';
 import {SharedModule} from "./shared/shared.module";
 import {FaIconLibrary, FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
@@ -30,10 +28,19 @@ import {FooterComponent} from "./layouts/footer/footer.component";
 import {ErrorComponent} from "./layouts/error/error.component";
 import {EntityRoutingModule} from "./entities/entity-routing.module";
 import {HomeModule} from "./home/home.module";
+import {AngularFireModule} from "@angular/fire/compat";
+import {AngularFireRemoteConfigModule, SETTINGS} from "@angular/fire/compat/remote-config";
+import {AngularFireMessagingModule} from "@angular/fire/compat/messaging";
+import {environment} from "../environments/environment";
+import {initializeApp} from "firebase/app";
+import {registerLocaleData} from "@angular/common";
 
 @NgModule({
   imports: [
     BrowserModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireMessagingModule,
+    AngularFireRemoteConfigModule,
     SharedModule,
     HomeModule,
     EntityRoutingModule,
@@ -42,12 +49,13 @@ import {HomeModule} from "./home/home.module";
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
-    ServiceWorkerModule.register('ngsw-worker.js', {
-      enabled: environment.production,
-      // Register the ServiceWorker as soon as the app is stable
-      // or after 30 seconds (whichever comes first).
-      registrationStrategy: 'registerWhenStable:30000'
-    }),
+    // ServiceWorkerModule.register('combined-sw.js', {
+    //   enabled: environment.production,
+    //   // Register the ServiceWorker as soon as the app is stable
+    //   // or after 30 seconds (whichever comes first).
+    //   registrationStrategy: 'registerWhenStable:30000'
+    // }),
+
     FontAwesomeModule,
     HttpClientModule,
     NgxWebstorageModule.forRoot({prefix: 'jhi', separator: '-'}),
@@ -68,8 +76,12 @@ import {HomeModule} from "./home/home.module";
     {provide: LOCALE_ID, useValue: 'it'},
     {provide: NgbDateAdapter, useClass: NgbDateDayjsAdapter},
     httpInterceptorProviders,
+    {
+      provide: SETTINGS,
+      useFactory: () => isDevMode() ? {minimumFetchIntervalMillis: 10_000} : {}
+    }
   ],
-  declarations: [AppComponent, LockScreenComponent, MainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, ActiveMenuDirective, FooterComponent],
+  declarations: [AppComponent, MainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, ActiveMenuDirective, FooterComponent],
   bootstrap: [MainComponent]
 })
 export class AppModule {

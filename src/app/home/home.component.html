@@ -9,6 +9,10 @@
 
       <p class="lead" jhiTranslate="home.subtitle">This is your homepage</p>
 
+      <button class="btn-outline-info" (click)="requestPermission()">
+        Hello this is a chat app.
+      </button>
+
       <div [ngSwitch]="isAuthenticated()">
         <div class="alert alert-success" *ngSwitchCase="true">
           <span id="home-logged-message" *ngIf="account" jhiTranslate="home.logged.message" [translateValues]="{ username: account.login }"
