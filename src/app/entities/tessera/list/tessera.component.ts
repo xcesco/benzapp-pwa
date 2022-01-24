@@ -65,7 +65,6 @@ export class TesseraComponent implements OnInit {
 
     if (this.accountService.hasAnyAuthority(['ROLE_USER'])) {
       this.delegheService.query().subscribe(response => {
-        console.error(response.body);
         const values = response.body;
 
         if (values) {

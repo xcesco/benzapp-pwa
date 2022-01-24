@@ -73,10 +73,8 @@
               <a [routerLink]="['/tessera', rifornimento.tessera?.id, 'view']">{{ rifornimento.tessera?.targa }}</a>
             </div>
           </td>
-          <td>{{ getImportoDovuto(rifornimento) | number: '1.0-2' }}</td>
+          <td>{{ getImportoDovuto(rifornimento) }}</td>
           <td>{{ rifornimento.litriErogati }}</td>
-          <!--          <td>{{ rifornimento.sconto }}</td>-->
-          <!--          <td>{{ rifornimento.prezzoAlLitro }}</td>-->
           <td jhiTranslate="{{ 'benzappApp.TipoCarburante.' + rifornimento.tipoCarburante }}">{{ rifornimento.tipoCarburante }}</td>
           <td *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_USER']">
             <div *ngIf="rifornimento.gestore">

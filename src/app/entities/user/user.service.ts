@@ -3,15 +3,17 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { IUser } from './user.model';
-import {SERVER_API_URL} from "../../app.constants";
 import {Pagination} from "../../core/request/request.model";
 import {createRequestOption} from "../../core/request/request-util";
+import {RemoteConfigService} from "../../core/config/remote-config.service";
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
-  public resourceUrl = SERVER_API_URL + 'api/users';
+  get resourceUrl(): string {
+    return this.remoteConfigService.backendBaseUrl + 'api/users';
+  }
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private remoteConfigService:RemoteConfigService) {}
 
   query(req?: Pagination): Observable<HttpResponse<IUser[]>> {
     const options = createRequestOption(req);

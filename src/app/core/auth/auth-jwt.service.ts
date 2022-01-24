@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { LocalStorageService, SessionStorageService } from 'ngx-webstorage';
 import {Login} from "../../login/login.model";
-import {SERVER_API_URL} from "../../app.constants";
+import {RemoteConfigService} from "../config/remote-config.service";
 
 
 type JwtToken = {
@@ -13,7 +13,8 @@ type JwtToken = {
 
 @Injectable({ providedIn: 'root' })
 export class AuthServerProvider {
-  constructor(private http: HttpClient, private $localStorage: LocalStorageService, private $sessionStorage: SessionStorageService) {}
+  constructor(private http: HttpClient, private $localStorage: LocalStorageService, private $sessionStorage: SessionStorageService,
+              private apiClientService:RemoteConfigService) {}
 
   getToken(): string {
     const tokenInLocalStorage: string | null = this.$localStorage.retrieve('authenticationToken');
@@ -23,7 +24,7 @@ export class AuthServerProvider {
 
   login(credentials: Login): Observable<void> {
     return this.http
-      .post<JwtToken>(SERVER_API_URL + 'api/authenticate', credentials)
+      .post<JwtToken>(this.apiClientService.backendBaseUrl + 'api/authenticate', credentials)
       .pipe(map(response => this.authenticateSuccess(response, credentials.rememberMe)));
   }
 

@@ -3,17 +3,19 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { IFascia } from '../fascia.model';
-import {SERVER_API_URL} from "../../../app.constants";
 import {createRequestOption} from "../../../core/request/request-util";
+import {RemoteConfigService} from "../../../core/config/remote-config.service";
 
 type EntityResponseType = HttpResponse<IFascia>;
 type EntityArrayResponseType = HttpResponse<IFascia[]>;
 
 @Injectable({ providedIn: 'root' })
 export class FasciaService {
-  public resourceUrl = SERVER_API_URL + 'api/fascias';
+  get resourceUrl(): string {
+    return this.remoteConfigService.backendBaseUrl + 'api/fascias';
+  }
 
-  constructor(protected http: HttpClient) {}
+  constructor(protected http: HttpClient, private remoteConfigService:RemoteConfigService) {}
 
   create(fascia: IFascia): Observable<EntityResponseType> {
     return this.http.post<IFascia>(this.resourceUrl, fascia, { observe: 'response' });

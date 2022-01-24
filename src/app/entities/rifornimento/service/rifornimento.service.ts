@@ -5,17 +5,19 @@ import { map } from 'rxjs/operators';
 import * as dayjs from 'dayjs';
 
 import { IRifornimento } from '../rifornimento.model';
-import {SERVER_API_URL} from "../../../app.constants";
 import {createRequestOption} from "../../../core/request/request-util";
+import {RemoteConfigService} from "../../../core/config/remote-config.service";
 
 type EntityResponseType = HttpResponse<IRifornimento>;
 type EntityArrayResponseType = HttpResponse<IRifornimento[]>;
 
 @Injectable({ providedIn: 'root' })
 export class RifornimentoService {
-  public resourceUrl = SERVER_API_URL + 'api/rifornimentos';
+  get resourceUrl(): string {
+    return this.remoteConfigService.backendBaseUrl + 'api/rifornimentos';
+  }
 
-  constructor(protected http: HttpClient) {}
+  constructor(protected http: HttpClient, private remoteConfigService:RemoteConfigService) {}
 
   create(rifornimento: IRifornimento): Observable<EntityResponseType> {
     const copy = this.convertDateFromClient(rifornimento);

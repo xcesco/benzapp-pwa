@@ -3,17 +3,19 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { IDelega } from '../delega.model';
-import {SERVER_API_URL} from "../../../app.constants";
 import {createRequestOption} from "../../../core/request/request-util";
+import {RemoteConfigService} from "../../../core/config/remote-config.service";
 
 type EntityResponseType = HttpResponse<IDelega>;
 type EntityArrayResponseType = HttpResponse<IDelega[]>;
 
 @Injectable({ providedIn: 'root' })
 export class DelegaService {
-  public resourceUrl = SERVER_API_URL + 'api/delegas';
+  get resourceUrl(): string {
+    return this.remoteConfigService.backendBaseUrl + 'api/delegas';
+  }
 
-  constructor(protected http: HttpClient) {}
+  constructor(protected http: HttpClient, private remoteConfigService:RemoteConfigService) {}
 
   create(delega: IDelega): Observable<EntityResponseType> {
     return this.http.post<IDelega>(this.resourceUrl, delega, { observe: 'response' });
