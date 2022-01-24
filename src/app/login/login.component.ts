@@ -43,6 +43,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
   }
 
   login(): void {
+    console.log('sono qui');
     this.loginService
       .login({
         username: this.loginForm.get('username')!.value,
@@ -56,8 +57,9 @@ export class LoginComponent implements OnInit, AfterViewInit {
             // There were no routing during login (eg from navigationToStoredUrl)
             this.router.navigate(['']);
           }
+          console.log('login OK');
         },
-        () => (this.authenticationError = true)
+        (error) => { this.authenticationError = true; console.log('login error', error); }
       );
   }
 }

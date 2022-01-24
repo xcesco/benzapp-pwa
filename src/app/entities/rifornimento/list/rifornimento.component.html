@@ -8,16 +8,6 @@
         <span jhiTranslate="benzappApp.rifornimento.home.refreshListLabel">Refresh List</span>
       </button>
 
-      <button
-        *jhiHasAnyAuthority="['ROLE_ADMIN']"
-        id="jh-create-entity"
-        data-cy="entityCreateButton"
-        class="btn btn-primary jh-create-entity create-rifornimento"
-        [routerLink]="['/rifornimento/new']"
-      >
-        <fa-icon icon="plus"></fa-icon>
-        <span jhiTranslate="benzappApp.rifornimento.home.createLabel"> Create a new Rifornimento </span>
-      </button>
     </div>
   </h2>
 
@@ -55,7 +45,7 @@
           <th scope="col" jhiSortBy="tipoCarburante">
             <span jhiTranslate="benzappApp.rifornimento.tipoCarburante">Tipo Carburante</span> <fa-icon icon="sort"></fa-icon>
           </th>
-          <th *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_USER']" scope="col" jhiSortBy="gestore.id">
+          <th *jhiHasAnyAuthority="['ROLE_USER']" scope="col" jhiSortBy="gestore.id">
             <span jhiTranslate="benzappApp.rifornimento.gestore">Gestore</span> <fa-icon icon="sort"></fa-icon>
           </th>
 
@@ -76,7 +66,7 @@
           <td>{{ getImportoDovuto(rifornimento) }}</td>
           <td>{{ rifornimento.litriErogati }}</td>
           <td jhiTranslate="{{ 'benzappApp.TipoCarburante.' + rifornimento.tipoCarburante }}">{{ rifornimento.tipoCarburante }}</td>
-          <td *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_USER']">
+          <td *jhiHasAnyAuthority="['ROLE_USER']">
             <div *ngIf="rifornimento.gestore">
               <a [routerLink]="['/gestore', rifornimento.gestore?.id, 'view']">{{
                 rifornimento.gestore?.indirizzo + ' ' + rifornimento.gestore?.comune
@@ -95,27 +85,6 @@
                 <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
               </button>
 
-              <button
-                *jhiHasAnyAuthority="['ROLE_ADMIN']"
-                type="submit"
-                [routerLink]="['/rifornimento', rifornimento.id, 'edit']"
-                class="btn btn-outline-primary"
-                data-cy="entityEditButton"
-              >
-                <fa-icon icon="pencil-alt"></fa-icon>
-                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
-              </button>
-
-              <button
-                *jhiHasAnyAuthority="['ROLE_ADMIN']"
-                type="submit"
-                (click)="delete(rifornimento)"
-                class="btn btn-outline-danger"
-                data-cy="entityDeleteButton"
-              >
-                <fa-icon icon="times"></fa-icon>
-                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
-              </button>
             </div>
           </td>
         </tr>

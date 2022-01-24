@@ -7,7 +7,6 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
-import {ServiceWorkerModule} from '@angular/service-worker';
 import {SharedModule} from "./shared/shared.module";
 import {FaIconLibrary, FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
@@ -24,7 +23,6 @@ import {MainComponent} from "./layouts/main/main.component";
 import {ActiveMenuDirective} from "./layouts/navbar/active-menu.directive";
 import {PageRibbonComponent} from "./layouts/profiles/page-ribbon.component";
 import {NavbarComponent} from "./layouts/navbar/navbar.component";
-import {FooterComponent} from "./layouts/footer/footer.component";
 import {ErrorComponent} from "./layouts/error/error.component";
 import {EntityRoutingModule} from "./entities/entity-routing.module";
 import {HomeModule} from "./home/home.module";
@@ -32,8 +30,6 @@ import {AngularFireModule} from "@angular/fire/compat";
 import {AngularFireRemoteConfigModule, SETTINGS} from "@angular/fire/compat/remote-config";
 import {AngularFireMessagingModule} from "@angular/fire/compat/messaging";
 import {environment} from "../environments/environment";
-import {initializeApp} from "firebase/app";
-import {registerLocaleData} from "@angular/common";
 
 @NgModule({
   imports: [
@@ -81,7 +77,7 @@ import {registerLocaleData} from "@angular/common";
       useFactory: () => isDevMode() ? {minimumFetchIntervalMillis: 10_000} : {}
     }
   ],
-  declarations: [AppComponent, MainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, ActiveMenuDirective, FooterComponent],
+  declarations: [AppComponent, MainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, ActiveMenuDirective],
   bootstrap: [MainComponent]
 })
 export class AppModule {

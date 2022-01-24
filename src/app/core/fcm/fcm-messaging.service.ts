@@ -9,6 +9,7 @@ import {AngularFireRemoteConfig} from "@angular/fire/compat/remote-config";
 import {environment} from "../../../environments/environment";
 import {AngularFireMessaging, AngularFireMessagingModule} from "@angular/fire/compat/messaging";
 import {RemoteConfigService} from "../config/remote-config.service";
+import {LocalStorageService, SessionStorageService} from "ngx-webstorage";
 
 @Injectable({providedIn: 'root'})
 export class FcmMessagingService {
@@ -16,12 +17,13 @@ export class FcmMessagingService {
   private tokenSubscription: Subscription;
 
   currentMessage = new BehaviorSubject(null);
+  token: string | null = null;
 
   tokenChanges(): Observable<string | null> {
     return this.fireMessaging.tokenChanges;
   }
 
-  constructor(private fireMessaging: AngularFireMessaging, private remoteConfigService: RemoteConfigService) {
+  constructor(private fireMessaging: AngularFireMessaging, private remoteConfigService: RemoteConfigService, private $localStorage: LocalStorageService) {
   }
 
   requestPermission(): Observable<NotificationPermission> {
@@ -31,6 +33,8 @@ export class FcmMessagingService {
   init() {
     this.tokenSubscription = this.fireMessaging.getToken.subscribe(value => {
       console.log('fcm token > ', value)
+      this.token = value;
+      this.$localStorage.store('fcmToken', this.token);
     });
 
 

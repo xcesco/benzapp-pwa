@@ -10,10 +10,6 @@
       <jhi-alert></jhi-alert>
 
       <dl class="row-md jh-entity-details">
-        <dt *jhiHasAnyAuthority="['ROLE_ADMIN']"><span jhiTranslate="global.field.id">ID</span></dt>
-        <dd *jhiHasAnyAuthority="['ROLE_ADMIN']">
-          <span>{{ tessera.id }}</span>
-        </dd>
         <dt><!--<span jhiTranslate="benzappApp.tessera.immagine">Immagine</span>--></dt>
         <dd>
           <div *ngIf="tessera.immagine">
@@ -48,21 +44,12 @@
         <dd>
           <span jhiTranslate="{{ 'benzappApp.TipoCarburante.' + tessera.carburante }}">{{ tessera.carburante }}</span>
         </dd>
-        <dt *jhiHasAnyAuthority="['ROLE_ADMIN']"><span jhiTranslate="benzappApp.tessera.cittadino">Cittadino</span></dt>
-        <dd *jhiHasAnyAuthority="['ROLE_ADMIN']">
-          <div *ngIf="tessera.cittadino">
-            <a [routerLink]="['/cittadino', tessera.cittadino?.id, 'view']">{{ tessera.cittadino?.id }}</a>
-          </div>
-        </dd>
       </dl>
 
       <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
         <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
       </button>
 
-      <button *jhiHasAnyAuthority="['ROLE_ADMIN']" type="button" [routerLink]="['/tessera', tessera.id, 'edit']" class="btn btn-primary">
-        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
-      </button>
     </div>
   </div>
 </div>
