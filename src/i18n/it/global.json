@@ -16,6 +16,8 @@
         "gestore": "Gestori",
         "marchio": "Marchi",
         "rifornimento": "Rifornimenti",
+        "stazione": "Stazioni",
+        "mappa": "Mappa stazioni",
         "rifornimento_lettore": "Rifornimento via lettore QRCode",
         "rifornimento_smartphone": "Rifornimento via camera",
         "tessera": "Tessere",

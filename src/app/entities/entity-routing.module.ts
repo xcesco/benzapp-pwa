@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule} from '@angular/router';
 
 @NgModule({
   imports: [
@@ -8,6 +8,16 @@ import { RouterModule } from '@angular/router';
         path: 'rifornimento',
         data: { pageTitle: 'benzappApp.rifornimento.home.title' },
         loadChildren: () => import('./rifornimento/rifornimento.module').then(m => m.RifornimentoModule),
+      },
+      // {
+      //   path: 'stazione',
+      //   data: { pageTitle: 'benzappApp.stazione.home.title' },
+      //   loadChildren: () => import('./stazione/stazione.module').then(m => m.StazioneModule),
+      // },
+      {
+        path: 'stazione',
+        data: { pageTitle: 'benzappApp.tessera.home.title' },
+        loadChildren: () => import('./stazione/stazione.module').then(m => m.StazioneModule),
       },
       {
         path: 'tessera',
