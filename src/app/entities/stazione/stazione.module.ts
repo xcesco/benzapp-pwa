@@ -5,14 +5,15 @@ import {StazioneRoutingModule} from "./route/stazione-routing.module";
 import {StazioneComponent} from "./list/stazione.component";
 import {StazioneDetailComponent} from "./detail/stazione-detail.component";
 import {MapComponent} from "./map/map.component";
-import { GoogleMapsModule } from '@angular/google-maps'
+import {GoogleMapsModule, MapMarkerClusterer} from '@angular/google-maps'
+import {MatIconModule} from "@angular/material/icon";
 
 @NgModule({
-  imports: [SharedModule, StazioneRoutingModule, GoogleMapsModule],
+  imports: [SharedModule, StazioneRoutingModule, GoogleMapsModule, MatIconModule],
   declarations: [
     StazioneComponent,
     StazioneDetailComponent,
-    MapComponent
+    MapComponent,
   ],
   entryComponents: []
 })

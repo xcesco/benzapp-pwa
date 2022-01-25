@@ -3,8 +3,8 @@ export interface IStazione {
   marchioId: number,
   indirizzo: string,
   comune: string,
-  longitudine: number,
-  latitudine: number,
+  lng: number,
+  lat: number,
   tipo: string
 }
 

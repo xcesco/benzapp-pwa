@@ -1,7 +1,7 @@
 {
   "home": {
-    "title": "Benvenuto alla POC di BenzAPP!",
-    "subtitle": "Sito per la gestione dei rifornimenti mediante QR code e app su smartphone.",
+    "title": "Benzapp PWA",
+    "subtitle": "Versione progressive web app di Benzapp",
     "logged": {
       "message": "Autenticato come \"{{username}}\"."
     }

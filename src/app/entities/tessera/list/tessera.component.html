@@ -1,14 +1,14 @@
-<div style="padding: 24px; margin-top: 24px" >
+<div style="margin-top: 24px; margin-left: 12px; margin-right: 12px">
   <h2 id="page-heading" data-cy="TesseraHeading">
     <span jhiTranslate="benzappApp.tessera.home.title">Tesseras</span>
 
-    <div class="d-flex justify-content-end">
-      <button class="btn btn-outline-primary mr-2" (click)="loadPage()" [disabled]="isLoading">
-        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
-        <span jhiTranslate="benzappApp.tessera.home.refreshListLabel">Refresh List</span>
-      </button>
+    <!--    <div class="d-flex justify-content-end">-->
+    <!--      <button class="btn btn-outline-primary mr-2" (click)="loadPage()" [disabled]="isLoading">-->
+    <!--        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>-->
+    <!--        <span jhiTranslate="benzappApp.tessera.home.refreshListLabel">Refresh List</span>-->
+    <!--      </button>-->
 
-    </div>
+    <!--    </div>-->
   </h2>
 
   <jhi-alert-error></jhi-alert-error>
@@ -19,81 +19,157 @@
     <span jhiTranslate="benzappApp.tessera.home.notFound">No tesseras found</span>
   </div>
 
-  <div class="table-responsive" id="entities" *ngIf="tesseras && tesseras.length > 0">
-    <table class="table table-hover" aria-describedby="page-heading">
-      <thead class="d-none d-lg-table">
-        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
-          <th scope="col" jhiSortBy="immagine">
-            <span jhiTranslate="benzappApp.tessera.immagine">Immagine</span>
-            <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="targa">
-            <span jhiTranslate="benzappApp.tessera.targa">Targa</span>
-            <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="veicolo">
-            <span jhiTranslate="benzappApp.tessera.veicolo">Veicolo</span>
-            <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="carburante">
-            <span jhiTranslate="benzappApp.tessera.carburante">Carburante</span>
-            <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let tessera of tesseras; trackBy: trackId" data-cy="entityTable">
-          <td>
-            <a *ngIf="tessera.immagine" (click)="openFile(tessera.immagine, tessera.immagineContentType)">
-              <img
-                [src]="'data:' + tessera.immagineContentType + ';base64,' + tessera.immagine"
-                style="max-height: 48px"
-                alt="tessera image"
-              />
-            </a>
-            <!--            <span *ngIf="tessera.immagine">{{ tessera.immagineContentType }}, {{ byteSize(tessera.immagine) }}</span>-->
-          </td>
-          <td>{{ tessera.targa }}</td>
-          <td jhiTranslate="{{ 'benzappApp.TipoVeicolo.' + tessera.veicolo }}">{{ tessera.veicolo }}</td>
-          <td jhiTranslate="{{ 'benzappApp.TipoCarburante.' + tessera.carburante }}">{{ tessera.carburante }}</td>
-          <td class="text-right">
-            <div>
-              <button
-                type="submit"
-                [routerLink]="['/tessera', tessera.id, 'view']"
-                class="btn btn-outline-primary"
-                data-cy="entityDetailsButton"
-              >
-                <fa-icon icon="eye"></fa-icon>
-                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
-              </button>
-              <button type="button" class="btn btn-outline-primary" data-cy="entityDelegaButton">
-                <span class="d-none d-md-inline" jhiTranslate="entity.action.delega">Delega</span>
-              </button>
-            </div>
-          </td>
-        </tr>
-        <tr *ngFor="let tessera of deleghe; trackBy: trackId" data-cy="entityTable">
-          <td>
-            <a *ngIf="tessera.immagine" (click)="openFile(tessera.immagine, tessera.immagineContentType)">
-              <img
-                [src]="'data:' + tessera.immagineContentType + ';base64,' + tessera.immagine"
-                style="max-height: 48px"
-                alt="tessera image"
-              />
-            </a>
-            <!--            <span *ngIf="tessera.immagine">{{ tessera.immagineContentType }}, {{ byteSize(tessera.immagine) }}</span>-->
-          </td>
-          <td>{{ tessera.targa }}</td>
-          <td jhiTranslate="{{ 'benzappApp.TipoVeicolo.' + tessera.veicolo }}">{{ tessera.veicolo }}</td>
-          <td jhiTranslate="{{ 'benzappApp.TipoCarburante.' + tessera.carburante }}">{{ tessera.carburante }}</td>
-          <td class="text-right">
-            <div>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+  <ng-container *ngFor="let elem of tesseras">
+    <div class="row" style="margin-bottom: 12px; margin-top: 12px;">
+      <div class="col-2">
+        <img
+          [src]="'data:' + elem.immagineContentType + ';base64,' + elem.immagine"
+          style="max-height: 48px"
+          alt="tessera image"
+        />
+      </div>
+      <div class="col-7">
+        <div class="row">
+          <div class="col-12"><span style="font-weight: bold">{{elem.targa}}</span></div>
+        </div>
+        <div class="row">
+          <div class="col-9"><span>{{elem.carburante}}</span></div>
+        </div>
+      </div>
+      <div class="col-3 d-flex flex-row-reverse">
+        <button
+          type="submit"
+          [routerLink]="['/tessera', elem.id, 'view']"
+          class="btn btn-outline-primary"
+        >
+          <mat-icon aria-hidden="false">arrow_forward</mat-icon>
+        </button>
+          <button
+            type="submit"
+            [routerLink]="['/tessera', elem.id, 'view']"
+            class="btn btn-outline-primary"
+            style="margin-right: 8px"
+          >
+            <mat-icon aria-hidden="false">qr_code</mat-icon>
+          </button>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-container *ngFor="let elem of deleghe">
+    <div class="row" style="margin-bottom: 12px; margin-top: 12px;">
+      <div class="col-2">
+        <img
+          [src]="'data:' + elem.immagineContentType + ';base64,' + elem.immagine"
+          style="max-height: 48px"
+          alt="tessera image"
+        />
+      </div>
+      <div class="col-7">
+        <div class="row">
+          <div class="col-12"><span style="font-weight: bold">{{elem.targa}} (DELEGA)</span></div>
+        </div>
+        <div class="row">
+          <div class="col-9"><span>{{elem.carburante}}</span></div>
+        </div>
+      </div>
+      <div class="col-3 d-flex flex-row-reverse">
+        <button
+          type="submit"
+          [routerLink]="['/tessera', elem.id, 'view']"
+          class="btn btn-outline-primary"
+        >
+          <mat-icon aria-hidden="false">arrow_forward</mat-icon>
+        </button>
+        <button
+          type="submit"
+          [routerLink]="['/tessera', elem.id, 'view']"
+          class="btn btn-outline-primary"
+          style="margin-right: 8px"
+        >
+          <mat-icon aria-hidden="false">qr_code</mat-icon>
+        </button>
+      </div>
+    </div>
+  </ng-container>
+
+
+
+  <!--  <div class="table-responsive" id="entities" *ngIf="tesseras && tesseras.length > 0">-->
+  <!--    <table class="table table-hover" aria-describedby="page-heading">-->
+  <!--      <thead class="d-none d-lg-table">-->
+  <!--        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">-->
+  <!--          <th scope="col" jhiSortBy="immagine">-->
+  <!--            <span jhiTranslate="benzappApp.tessera.immagine">Immagine</span>-->
+  <!--            <fa-icon icon="sort"></fa-icon>-->
+  <!--          </th>-->
+  <!--          <th scope="col" jhiSortBy="targa">-->
+  <!--            <span jhiTranslate="benzappApp.tessera.targa">Targa</span>-->
+  <!--            <fa-icon icon="sort"></fa-icon>-->
+  <!--          </th>-->
+  <!--          <th scope="col" jhiSortBy="veicolo">-->
+  <!--            <span jhiTranslate="benzappApp.tessera.veicolo">Veicolo</span>-->
+  <!--            <fa-icon icon="sort"></fa-icon>-->
+  <!--          </th>-->
+  <!--          <th scope="col" jhiSortBy="carburante">-->
+  <!--            <span jhiTranslate="benzappApp.tessera.carburante">Carburante</span>-->
+  <!--            <fa-icon icon="sort"></fa-icon>-->
+  <!--          </th>-->
+  <!--          <th scope="col"></th>-->
+  <!--        </tr>-->
+  <!--      </thead>-->
+  <!--      <tbody>-->
+  <!--        <tr *ngFor="let tessera of tesseras; trackBy: trackId" data-cy="entityTable">-->
+  <!--          <td>-->
+  <!--            <a *ngIf="tessera.immagine" (click)="openFile(tessera.immagine, tessera.immagineContentType)">-->
+  <!--              <img-->
+  <!--                [src]="'data:' + tessera.immagineContentType + ';base64,' + tessera.immagine"-->
+  <!--                style="max-height: 48px"-->
+  <!--                alt="tessera image"-->
+  <!--              />-->
+  <!--            </a>-->
+  <!--            &lt;!&ndash;            <span *ngIf="tessera.immagine">{{ tessera.immagineContentType }}, {{ byteSize(tessera.immagine) }}</span>&ndash;&gt;-->
+  <!--          </td>-->
+  <!--          <td>{{ tessera.targa }}</td>-->
+  <!--          <td jhiTranslate="{{ 'benzappApp.TipoVeicolo.' + tessera.veicolo }}">{{ tessera.veicolo }}</td>-->
+  <!--          <td jhiTranslate="{{ 'benzappApp.TipoCarburante.' + tessera.carburante }}">{{ tessera.carburante }}</td>-->
+  <!--          <td class="text-right">-->
+  <!--            <div>-->
+  <!--              <button-->
+  <!--                type="submit"-->
+  <!--                [routerLink]="['/tessera', tessera.id, 'view']"-->
+  <!--                class="btn btn-outline-primary"-->
+  <!--                data-cy="entityDetailsButton"-->
+  <!--              >-->
+  <!--                <fa-icon icon="eye"></fa-icon>-->
+  <!--                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>-->
+  <!--              </button>-->
+  <!--              <button type="button" class="btn btn-outline-primary" data-cy="entityDelegaButton">-->
+  <!--                <span class="d-none d-md-inline" jhiTranslate="entity.action.delega">Delega</span>-->
+  <!--              </button>-->
+  <!--            </div>-->
+  <!--          </td>-->
+  <!--        </tr>-->
+  <!--        <tr *ngFor="let tessera of deleghe; trackBy: trackId" data-cy="entityTable">-->
+  <!--          <td>-->
+  <!--            <a *ngIf="tessera.immagine" (click)="openFile(tessera.immagine, tessera.immagineContentType)">-->
+  <!--              <img-->
+  <!--                [src]="'data:' + tessera.immagineContentType + ';base64,' + tessera.immagine"-->
+  <!--                style="max-height: 48px"-->
+  <!--                alt="tessera image"-->
+  <!--              />-->
+  <!--            </a>-->
+  <!--            &lt;!&ndash;            <span *ngIf="tessera.immagine">{{ tessera.immagineContentType }}, {{ byteSize(tessera.immagine) }}</span>&ndash;&gt;-->
+  <!--          </td>-->
+  <!--          <td>{{ tessera.targa }}</td>-->
+  <!--          <td jhiTranslate="{{ 'benzappApp.TipoVeicolo.' + tessera.veicolo }}">{{ tessera.veicolo }}</td>-->
+  <!--          <td jhiTranslate="{{ 'benzappApp.TipoCarburante.' + tessera.carburante }}">{{ tessera.carburante }}</td>-->
+  <!--          <td class="text-right">-->
+  <!--            <div>-->
+  <!--            </div>-->
+  <!--          </td>-->
+  <!--        </tr>-->
+  <!--      </tbody>-->
+  <!--    </table>-->
+  <!--  </div>-->
 </div>

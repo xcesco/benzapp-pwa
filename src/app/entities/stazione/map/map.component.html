@@ -1,3 +1,24 @@
-<google-map
-            width="100%"
-></google-map>
+<google-map #map width="100%" [center]="center" [zoom]="12">
+  <map-marker-clusterer>
+    <ng-container *ngFor="let elem of locations">
+      <map-marker #marker="mapMarker"
+                  [position]="elem" (mapClick)="openInfoWindow(marker, infoWindow)"></map-marker>
+      <map-info-window #infoWindow="mapInfoWindow">
+        <div class="row">
+          <div class="col-2">
+            <img width="32" class="col img-thumbnail" src="{{getMarchioImage(elem)}}">
+          </div>
+          <div class="col-10">
+            <div class="row">
+              <div class="col-12"><span style="font-weight: bold">{{elem.indirizzo}}</span></div>
+            </div>
+            <div class="row">
+              <div class="col-8"><span>{{elem.comune}}</span></div>
+              <div class="col-4"><mat-icon aria-hidden="false" (click)="onNavigate(elem)">arrow_forward</mat-icon></div>
+            </div>
+          </div>
+        </div>
+      </map-info-window>
+    </ng-container>
+  </map-marker-clusterer>
+</google-map>

@@ -42,3 +42,4 @@ testem.log
 Thumbs.db
 /src/environments/firebase-config.ts
 /src/firebase-messaging-sw.js
+/src/index-with-apikey.html

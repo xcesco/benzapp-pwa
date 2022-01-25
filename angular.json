@@ -19,6 +19,12 @@
       "architect": {
         "build": {
           "builder": "@angular-builders/custom-webpack:browser",
+          "fileReplacements": [
+            {
+              "replace": "src/index.html",
+              "with": "src/index-with-apikey.html"
+            }
+          ],
           "options": {
             "customWebpackConfig": {
               "path": "./webpack/webpack.custom.js"
@@ -40,7 +46,8 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+            ]
           },
           "configurations": {
             "production": {

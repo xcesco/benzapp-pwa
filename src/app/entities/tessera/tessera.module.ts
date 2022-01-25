@@ -5,9 +5,10 @@ import { TesseraComponent } from './list/tessera.component';
 import { TesseraDetailComponent } from './detail/tessera-detail.component';
 import { TesseraDeleteDialogComponent } from './delete/tessera-delete-dialog.component';
 import { TesseraRoutingModule } from './route/tessera-routing.module';
+import {MatIconModule} from "@angular/material/icon";
 
 @NgModule({
-  imports: [SharedModule, TesseraRoutingModule],
+    imports: [SharedModule, TesseraRoutingModule, MatIconModule],
   declarations: [TesseraComponent, TesseraDetailComponent, TesseraDeleteDialogComponent],
   entryComponents: [TesseraDeleteDialogComponent],
 })

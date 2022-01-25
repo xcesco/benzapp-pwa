@@ -1,10 +1,12 @@
 import {Injectable} from '@angular/core';
 import {IStazione} from "../stazione.model";
 import {stations} from "../stazione.data";
+import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs";
 
 @Injectable({providedIn: 'root'})
 export class StazioneService {
-  constructor() {
+  constructor(private http: HttpClient) {
   }
 
   find(id: number): IStazione {
@@ -20,10 +22,15 @@ export class StazioneService {
       id: parseInt(input['id']),
       marchioId: parseInt(input['marchio_id']),
       indirizzo: input['indirizzo'],
-      longitudine: parseFloat(input['longitudine']),
-      latitudine: parseFloat(input['latitudine']),
+      lng: parseFloat(input['longitudine']),
+      lat: parseFloat(input['latitudine']),
       tipo: input['tipo']
     });
     return copy;
+  }
+
+  navigateTo(stazione: IStazione) {
+    const mapUrl = `http://maps.google.com/maps?z=12&t=m&q=loc:${stazione.lat}+${stazione.lng}`;
+    window.open(mapUrl, "_blank");
   }
 }

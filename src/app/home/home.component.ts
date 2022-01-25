@@ -20,12 +20,14 @@ export class HomeComponent implements OnInit, OnDestroy {
   account: Account | null = null;
   authSubscription?: Subscription;
 
-  constructor(private accountService: AccountService, private router: Router, private remoteConfigService: RemoteConfigService, private fcmMessagingService: FcmMessagingService) {
+  constructor(private accountService: AccountService, private router: Router, public remoteConfigService: RemoteConfigService, private fcmMessagingService: FcmMessagingService) {
     remoteConfigService.init();
     fcmMessagingService.init();
   }
 
   requestPermission() {
+    this.remoteConfigService.init();
+
     this.fcmMessagingService.requestPermission()
       .pipe(mergeMapTo(this.fcmMessagingService.tokenChanges()))
       .subscribe(
