@@ -35,7 +35,7 @@
 
           <!-- funzioni -->
           <li
-            *ngIf="isAuthenticated() && hasAuthority(['ROLE_USER', 'ROLE_PATROL_STATION'])"
+            *ngIf="isAuthenticated() && hasAuthority(['ROLE_USER'])"
             ngbDropdown
             class="nav-item dropdown pointer"
             display="dynamic"
@@ -63,20 +63,8 @@
                 </a>
               </li>
 
-              <!-- funzioni patrol -->
-              <li *jhiHasAnyAuthority="'ROLE_PATROL_STATION'">
-                <a
-                  class="dropdown-item"
-                  routerLink="gestore/{{ gestoreId }}/edit"
-                  routerLinkActive="active"
-                  [routerLinkActiveOptions]="{ exact: true }"
-                  (click)="collapseNavbar()"
-                >
-                  <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
-                  <span jhiTranslate="global.menu.functions.price">Varia prezzo</span>
-                </a>
-              </li>
-              <li *jhiHasAnyAuthority="['ROLE_PATROL_STATION', 'ROLE_USER']">
+
+              <li *jhiHasAnyAuthority="['ROLE_USER']">
                 <a
                   class="dropdown-item"
                   routerLink="rifornimento"
@@ -88,28 +76,30 @@
                   <span jhiTranslate="global.menu.entities.rifornimento">Rifornimento</span>
                 </a>
               </li>
-              <li *jhiHasAnyAuthority="'ROLE_PATROL_STATION'">
+
+              <li *jhiHasAnyAuthority="['ROLE_USER']">
                 <a
                   class="dropdown-item"
-                  routerLink="rifornimento/new-pc"
+                  routerLink="stazione/map"
                   routerLinkActive="active"
                   [routerLinkActiveOptions]="{ exact: true }"
                   (click)="collapseNavbar()"
                 >
                   <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
-                  <span jhiTranslate="global.menu.entities.rifornimento_lettore">Rifornimento Lettore</span>
+                  <span jhiTranslate="global.menu.entities.mappa">Mappa stazioni</span>
                 </a>
               </li>
-              <li *jhiHasAnyAuthority="'ROLE_PATROL_STATION'">
+
+              <li *jhiHasAnyAuthority="['ROLE_USER']">
                 <a
                   class="dropdown-item"
-                  routerLink="rifornimento/new-smartphone"
+                  routerLink="stazione"
                   routerLinkActive="active"
                   [routerLinkActiveOptions]="{ exact: true }"
                   (click)="collapseNavbar()"
                 >
                   <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
-                  <span jhiTranslate="global.menu.entities.rifornimento_smartphone">Rifornimento Smartphone</span>
+                  <span jhiTranslate="global.menu.entities.stazione">Stazioni</span>
                 </a>
               </li>
             </ul>
