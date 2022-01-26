@@ -7,9 +7,11 @@ import {StazioneDetailComponent} from "./detail/stazione-detail.component";
 import {MapComponent} from "./map/map.component";
 import {GoogleMapsModule, MapMarkerClusterer} from '@angular/google-maps'
 import {MatIconModule} from "@angular/material/icon";
+import {MatListModule} from "@angular/material/list";
+import {MatButtonModule} from "@angular/material/button";
 
 @NgModule({
-  imports: [SharedModule, StazioneRoutingModule, GoogleMapsModule, MatIconModule],
+  imports: [SharedModule, StazioneRoutingModule, GoogleMapsModule, MatIconModule, MatListModule, MatButtonModule],
   declarations: [
     StazioneComponent,
     StazioneDetailComponent,
