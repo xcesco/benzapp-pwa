@@ -53,3 +53,12 @@ Logo styles
   background: url('../../../content/images/logo-benzapp.png') no-repeat center center;
   background-size: contain;
 }
+
+
+// Material
+.toolbar-icon {
+  padding: 0 14px;
+}
+.toolbar-spacer {
+  flex: 1 1 auto;
+}

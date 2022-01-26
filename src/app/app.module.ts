@@ -30,43 +30,45 @@ import {AngularFireModule} from "@angular/fire/compat";
 import {AngularFireRemoteConfigModule, SETTINGS} from "@angular/fire/compat/remote-config";
 import {AngularFireMessagingModule} from "@angular/fire/compat/messaging";
 import {environment} from "../environments/environment";
+import {MatMenuModule} from "@angular/material/menu";
 
 @NgModule({
-  imports: [
-    BrowserModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFireMessagingModule,
-    AngularFireRemoteConfigModule,
-    SharedModule,
-    HomeModule,
-    EntityRoutingModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatButtonModule,
-    // ServiceWorkerModule.register('combined-sw.js', {
-    //   enabled: environment.production,
-    //   // Register the ServiceWorker as soon as the app is stable
-    //   // or after 30 seconds (whichever comes first).
-    //   registrationStrategy: 'registerWhenStable:30000'
-    // }),
+    imports: [
+        BrowserModule,
+        AngularFireModule.initializeApp(environment.firebase),
+        AngularFireMessagingModule,
+        AngularFireRemoteConfigModule,
+        SharedModule,
+        HomeModule,
+        EntityRoutingModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatToolbarModule,
+        MatIconModule,
+        MatButtonModule,
+        // ServiceWorkerModule.register('combined-sw.js', {
+        //   enabled: environment.production,
+        //   // Register the ServiceWorker as soon as the app is stable
+        //   // or after 30 seconds (whichever comes first).
+        //   registrationStrategy: 'registerWhenStable:30000'
+        // }),
 
-    FontAwesomeModule,
-    HttpClientModule,
-    NgxWebstorageModule.forRoot({prefix: 'jhi', separator: '-'}),
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: translatePartialLoader,
-        deps: [HttpClient],
-      },
-      missingTranslationHandler: {
-        provide: MissingTranslationHandler,
-        useFactory: missingTranslationHandler,
-      },
-    }),
-  ],
+        FontAwesomeModule,
+        HttpClientModule,
+        NgxWebstorageModule.forRoot({prefix: 'jhi', separator: '-'}),
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: translatePartialLoader,
+                deps: [HttpClient],
+            },
+            missingTranslationHandler: {
+                provide: MissingTranslationHandler,
+                useFactory: missingTranslationHandler,
+            },
+        }),
+        MatMenuModule,
+    ],
   providers: [
     Title,
     {provide: LOCALE_ID, useValue: 'it'},

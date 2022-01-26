@@ -1,145 +1,51 @@
-<!--<mat-toolbar>-->
-<!--  <span>My Application</span>-->
-<!--</mat-toolbar>-->
-<header>
-  <nav data-cy="navbar" class="navbar navbar-dark navbar-expand-md bg-primary">
-    <div class="container">
-      <a class="navbar-brand logo" routerLink="/" (click)="collapseNavbar()">
-        <span class="d-none d-sm-block logo-img"></span>
-        <span jhiTranslate="global.title" class="navbar-title">Benzapp</span> <span class="navbar-version">&nbsp;&nbsp;{{ version }}</span>
-      </a>
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <button mat-icon-button [matMenuTriggerFor]="menuNavigation"
+            aria-label="Example icon-button with menu icon">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span jhiTranslate="global.title" class="navbar-title">Benzapp</span> <span
+    class="navbar-version">&nbsp;&nbsp;{{ version }}</span>
+    <span class="toolbar-spacer"></span>
+    <button mat-button [matMenuTriggerFor]="menuAccount">
+      <mat-icon>person</mat-icon>
+      <span *ngIf="accountAuthenticated">{{ account?.login }}</span>
+      <span *ngIf="!accountAuthenticated" jhiTranslate="global.menu.account.main"> Account </span>
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>
 
-      <a
-        class="navbar-toggler d-lg-none"
-        href="javascript:void(0);"
-        data-toggle="collapse"
-        data-target="#navbarResponsive"
-        aria-controls="navbarResponsive"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-        (click)="toggleNavbar()"
-      >
-        <fa-icon icon="bars"></fa-icon>
-      </a>
-      <div class="navbar-collapse collapse" id="navbarResponsive" [ngbCollapse]="isNavbarCollapsed" [ngSwitch]="isAuthenticated()">
-        <ul class="navbar-nav ml-auto">
-          <!-- home -->
-          <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-            <a class="nav-link" routerLink="/" (click)="collapseNavbar()">
-              <span>
-                <fa-icon icon="home"></fa-icon>
-                <span jhiTranslate="global.menu.home">Home</span>
-              </span>
-            </a>
-          </li>
+<mat-menu #menuNavigation="matMenu">
+  <button mat-menu-item routerLinkActive="active" routerLink="/" [routerLinkActiveOptions]="{ exact: true }">
+    <!-- home -->
+    <mat-icon>home</mat-icon>
+    <span jhiTranslate="global.menu.home">Home</span>
+  </button>
+  <button mat-menu-item *ngIf="isAuthenticated()" routerLinkActive="active" routerLink="/tessera" [routerLinkActiveOptions]="{ exact: true }">
+    <mat-icon>directions_car</mat-icon>
+    <span jhiTranslate="global.menu.entities.tessera">Tessera</span>
+  </button>
+  <button mat-menu-item *ngIf="isAuthenticated()" routerLinkActive="active" routerLink="/rifornimento" [routerLinkActiveOptions]="{ exact: true }">
+    <mat-icon>local_gas_station</mat-icon>
+    <span jhiTranslate="global.menu.entities.rifornimento">Rifornimento</span>
+  </button>
+  <button mat-menu-item *ngIf="isAuthenticated()" routerLinkActive="active"  routerLink="/stazione/map" [routerLinkActiveOptions]="{ exact: true }">
+    <mat-icon>map</mat-icon>
+    <span jhiTranslate="global.menu.entities.mappa">Mappa stazioni</span>
+  </button>
+  <button mat-menu-item *ngIf="isAuthenticated()" routerLinkActive="active"  routerLink="/stazione" [routerLinkActiveOptions]="{ exact: true }">
+    <mat-icon>list</mat-icon>
+    <span jhiTranslate="global.menu.entities.stazione">Stazioni</span>
+  </button>
+</mat-menu>
 
-          <!-- funzioni -->
-          <li
-            *ngIf="isAuthenticated() && hasAuthority(['ROLE_USER'])"
-            ngbDropdown
-            class="nav-item dropdown pointer"
-            display="dynamic"
-            routerLinkActive="active"
-            [routerLinkActiveOptions]="{ exact: true }"
-          >
-            <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="funzioni-menu" data-cy="functions">
-              <span>
-                <fa-icon icon="th-list"></fa-icon>
-                <span jhiTranslate="global.menu.functions.main"> Funzioni </span>
-              </span>
-            </a>
-            <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="functions-menu">
-              <!-- funzioni user -->
-              <li *jhiHasAnyAuthority="'ROLE_USER'">
-                <a
-                  class="dropdown-item"
-                  routerLink="tessera"
-                  routerLinkActive="active"
-                  [routerLinkActiveOptions]="{ exact: true }"
-                  (click)="collapseNavbar()"
-                >
-                  <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
-                  <span jhiTranslate="global.menu.entities.tessera">Tessera</span>
-                </a>
-              </li>
-
-
-              <li *jhiHasAnyAuthority="['ROLE_USER']">
-                <a
-                  class="dropdown-item"
-                  routerLink="rifornimento"
-                  routerLinkActive="active"
-                  [routerLinkActiveOptions]="{ exact: true }"
-                  (click)="collapseNavbar()"
-                >
-                  <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
-                  <span jhiTranslate="global.menu.entities.rifornimento">Rifornimento</span>
-                </a>
-              </li>
-
-              <li *jhiHasAnyAuthority="['ROLE_USER']">
-                <a
-                  class="dropdown-item"
-                  routerLink="stazione/map"
-                  routerLinkActive="active"
-                  [routerLinkActiveOptions]="{ exact: true }"
-                  (click)="collapseNavbar()"
-                >
-                  <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
-                  <span jhiTranslate="global.menu.entities.mappa">Mappa stazioni</span>
-                </a>
-              </li>
-
-              <li *jhiHasAnyAuthority="['ROLE_USER']">
-                <a
-                  class="dropdown-item"
-                  routerLink="stazione"
-                  routerLinkActive="active"
-                  [routerLinkActiveOptions]="{ exact: true }"
-                  (click)="collapseNavbar()"
-                >
-                  <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
-                  <span jhiTranslate="global.menu.entities.stazione">Stazioni</span>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <!-- entity -->
-          <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
-          <li
-            ngbDropdown
-            class="nav-item dropdown pointer"
-            display="dynamic"
-            routerLinkActive="active"
-            [routerLinkActiveOptions]="{ exact: true }"
-          >
-            <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="account-menu" data-cy="accountMenu">
-              <span *ngIf="!getImageUrl()">
-                <fa-icon icon="user"></fa-icon>
-                <span *ngIf="accountAuthenticated">{{ account?.login }}</span>
-                <span *ngIf="!accountAuthenticated" jhiTranslate="global.menu.account.main"> Account </span>
-              </span>
-              <span *ngIf="getImageUrl()">
-                <img [src]="getImageUrl()" class="profile-image rounded-circle" alt="Avatar" />
-              </span>
-            </a>
-            <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="account-menu">
-              <li *ngSwitchCase="true">
-                <a class="dropdown-item" (click)="logout()" id="logout" data-cy="logout">
-                  <fa-icon icon="sign-out-alt" [fixedWidth]="true"></fa-icon>
-                  <span jhiTranslate="global.menu.account.logout">Sign out</span>
-                </a>
-              </li>
-              <li *ngSwitchCase="false">
-                <a class="dropdown-item" (click)="login()" id="login" data-cy="login">
-                  <fa-icon icon="sign-in-alt" [fixedWidth]="true"></fa-icon>
-                  <span jhiTranslate="global.menu.account.login">Sign in</span>
-                </a>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-</header>
+<mat-menu #menuAccount="matMenu">
+  <button *ngIf="!accountAuthenticated" mat-menu-item (click)="login()">
+    <mat-icon>notifications_off</mat-icon>
+    <span jhiTranslate="global.menu.account.login">Sign in</span>
+  </button>
+  <button *ngIf="accountAuthenticated" mat-menu-item (click)="logout()">
+    <mat-icon>notifications_off</mat-icon>
+    <span jhiTranslate="global.menu.account.logout">Sign out</span>
+  </button>
+</mat-menu>
