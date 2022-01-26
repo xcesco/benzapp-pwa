@@ -8,9 +8,11 @@ import {RifornimentoRoutingModule} from './route/rifornimento-routing.module';
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import {FlexLayoutModule} from "@angular/flex-layout";
+import {MatListModule} from "@angular/material/list";
+import {MatChipsModule} from "@angular/material/chips";
 
 @NgModule({
-  imports: [SharedModule, RifornimentoRoutingModule, MatButtonModule, MatIconModule, FlexLayoutModule],
+  imports: [SharedModule, RifornimentoRoutingModule, MatButtonModule, MatIconModule, FlexLayoutModule, MatListModule, MatChipsModule],
   declarations: [
     RifornimentoComponent,
     RifornimentoDetailComponent,

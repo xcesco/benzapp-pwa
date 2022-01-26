@@ -16,6 +16,7 @@ import {DataUtils} from "../../../core/util/data-util.service";
 @Component({
   selector: 'jhi-tessera',
   templateUrl: './tessera.component.html',
+  styleUrls: ['./tessera.component.scss'],
 })
 export class TesseraComponent implements OnInit {
   tesseras?: ITessera[];

@@ -8,6 +8,7 @@ import {AngularFireRemoteConfig} from "@angular/fire/compat/remote-config";
 @Component({
   selector: 'jhi-main',
   templateUrl: './main.component.html',
+  styleUrls: ['./main.component.scss']
 })
 export class MainComponent implements OnInit {
   private renderer: Renderer2;

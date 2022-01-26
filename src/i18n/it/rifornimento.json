@@ -2,7 +2,7 @@
   "benzappApp": {
     "rifornimento": {
       "home": {
-        "title": "Elenco rifornimenti",
+        "title": "Rifornimenti",
         "refreshListLabel": "Aggiorna lista",
         "createLabel": "Nuovo rifornimento",
         "createOrEditLabel": "Registra nuovo rifornimento",

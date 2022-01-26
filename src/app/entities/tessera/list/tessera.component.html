@@ -1,6 +1,10 @@
 <div style="margin-top: 24px; margin-left: 12px; margin-right: 12px">
   <h2 id="page-heading" fxLayout="row" fxLayoutAlign="space-between stretch">
-    <span jhiTranslate="benzappApp.tessera.home.title">Tesseras</span>
+
+    <div fxLayout="row" fxLayoutAlign="start center" style="padding-left: 24px">
+      <mat-icon>directions_car</mat-icon>
+      &nbsp;<span jhiTranslate="benzappApp.tessera.home.title">Tesseras</span>
+    </div>
 
     <div>
       <button mat-stroked-button color="primary" [disabled]="isLoading" (click)="loadPage()">

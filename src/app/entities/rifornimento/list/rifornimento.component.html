@@ -1,6 +1,10 @@
-<div style="margin-top: 24px; margin-left: 12px; margin-right: 12px">
-  <h2 id="page-heading" fxLayout="row" fxLayoutAlign="space-between stretch">
-    <span jhiTranslate="benzappApp.rifornimento.home.title">Rifornimentos</span>
+<div>
+  <h2 id="page-heading" fxLayout="row" fxLayoutAlign="space-between center">
+
+    <div fxLayout="row" fxLayoutAlign="start center" style="padding-left: 24px">
+      <mat-icon>local_gas_station</mat-icon>&nbsp;
+      <span jhiTranslate="benzappApp.rifornimento.home.title">Rifornimentos</span>
+    </div>
 
     <button mat-stroked-button color="primary" [disabled]="isLoading" (click)="loadPage()">
       <mat-icon [ngClass]="{ 'fa-spin': isLoading }">refresh</mat-icon>
@@ -16,103 +20,27 @@
     <span jhiTranslate="benzappApp.rifornimento.home.notFound">No rifornimentos found</span>
   </div>
 
-<!--  <ng-container *ngFor="let elem of rifornimentos">-->
-<!--    <div class="row" style="margin-bottom: 12px; margin-top: 12px;">-->
-<!--      <div class="col-2">-->
-<!--        <img width="32" class="col img-thumbnail" src="{{getMarchioImage(elem)}}">-->
-<!--      </div>-->
-<!--      <div class="col-8">-->
-<!--        <div class="row">-->
-<!--          <div class="col-12"><span style="font-weight: bold">{{elem.indirizzo}}</span></div>-->
-<!--        </div>-->
-<!--        <div class="row">-->
-<!--          <div class="col-12"><span>{{elem.comune}}</span></div>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--      <div class="col-2">-->
-<!--        <button-->
-<!--          type="button"-->
-<!--          (click)="onNavigate(elem)"-->
-<!--          class="btn btn-outline-primary"-->
-<!--        >-->
-<!--          <mat-icon aria-hidden="false">arrow_forward</mat-icon>-->
-<!--        </button>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </ng-container>-->
 
-  <div class="table-responsive" id="entities" *ngIf="rifornimentos && rifornimentos.length > 0">
-    <table class="table table-striped table-hover" aria-describedby="page-heading">
-      <thead class="thead-dark">
-        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
-          <!--          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>-->
-          <th scope="col" jhiSortBy="data">
-            <span jhiTranslate="benzappApp.rifornimento.data">Data</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="tessera.id">
-            <span jhiTranslate="benzappApp.rifornimento.tessera">Tessera</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col">
-            <span jhiTranslate="benzappApp.rifornimento.importo">Importo</span>
-          </th>
-          <th scope="col" jhiSortBy="litriErogati">
-            <span jhiTranslate="benzappApp.rifornimento.litriErogati">Litri Erogati</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <!--          <th scope="col" jhiSortBy="sconto">-->
-          <!--            <span jhiTranslate="benzappApp.rifornimento.sconto">Sconto</span> <fa-icon icon="sort"></fa-icon>-->
-          <!--          </th>-->
-          <!--          <th scope="col" jhiSortBy="prezzoAlLitro">-->
-          <!--            <span jhiTranslate="benzappApp.rifornimento.prezzoAlLitro">Prezzo Al Litro</span> <fa-icon icon="sort"></fa-icon>-->
-          <!--          </th>-->
-          <th scope="col" jhiSortBy="tipoCarburante">
-            <span jhiTranslate="benzappApp.rifornimento.tipoCarburante">Tipo Carburante</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th *jhiHasAnyAuthority="['ROLE_USER']" scope="col" jhiSortBy="gestore.id">
-            <span jhiTranslate="benzappApp.rifornimento.gestore">Gestore</span> <fa-icon icon="sort"></fa-icon>
-          </th>
+  <mat-list>
+    <mat-list-item *ngFor="let elem of rifornimentos">
 
-          <th scope="col"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let rifornimento of rifornimentos; trackBy: trackId" data-cy="entityTable">
-          <!--          <td>-->
-          <!--            <a [routerLink]="['/rifornimento', rifornimento.id, 'view']">{{ rifornimento.id }}</a>-->
-          <!--          </td>-->
-          <td>{{ rifornimento?.data?.format('DD/MM/YYYY, hh:mm') }}</td>
-          <td>
-            <div *ngIf="rifornimento.tessera">
-              <a [routerLink]="['/tessera', rifornimento.tessera?.id, 'view']">{{ rifornimento.tessera?.targa }}</a>
-            </div>
-          </td>
-          <td>{{ getImportoDovuto(rifornimento) }}</td>
-          <td>{{ rifornimento.litriErogati }}</td>
-          <td jhiTranslate="{{ 'benzappApp.TipoCarburante.' + rifornimento.tipoCarburante }}">{{ rifornimento.tipoCarburante }}</td>
-          <td *jhiHasAnyAuthority="['ROLE_USER']">
-            <div *ngIf="rifornimento.gestore">
-              <a [routerLink]="['/gestore', rifornimento.gestore?.id, 'view']">{{
-                rifornimento.gestore?.indirizzo + ' ' + rifornimento.gestore?.comune
-              }}</a>
-            </div>
-          </td>
-          <td class="text-right">
-            <div>
-              <button
-                type="submit"
-                [routerLink]="['/rifornimento', rifornimento.id, 'view']"
-                class="btn btn-outline-primary"
-                data-cy="entityDetailsButton"
-              >
-                <fa-icon icon="eye"></fa-icon>
-                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
-              </button>
+      <h3 matLine style="font-weight: bold" fxLayout="row" fxLayoutAlign="space-between stretch">
+        <div>{{elem.tessera!.targa}}</div>
+        <div style="text-align: end;">{{ elem?.data?.format('DD/MM/YYYY, hh:mm') }}</div>
+      </h3>
+      <h6 matLine>{{elem.gestore!.indirizzo}}</h6>
+      <h6 matLine><span>Pagato {{((elem.prezzoAlLitro! - elem.sconto!) * elem.litriErogati!).toFixed(2)}} €</span>&nbsp;&nbsp;<span>Erogato {{(elem.litriErogati! * 1).toFixed(2)}}
+        L.</span></h6>
 
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+      <button color="primary"
+              mat-icon-button
+              [routerLink]="['/rifornimento', elem.id, 'view']"
+      >
+        <mat-icon aria-hidden="false">arrow_forward</mat-icon>
+      </button>
+
+    </mat-list-item>
+  </mat-list>
 
   <div *ngIf="rifornimentos && rifornimentos.length > 0">
     <div class="row justify-content-center">

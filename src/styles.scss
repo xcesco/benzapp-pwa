@@ -10,3 +10,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 // Import Bootstrap source files from node_modules
 @import '~bootstrap/scss/bootstrap';
 @import '~bootswatch/dist/litera/bootswatch';
+
+body {
+  background: #3f51b5;
+}
+

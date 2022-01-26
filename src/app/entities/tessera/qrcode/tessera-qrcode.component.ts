@@ -9,6 +9,7 @@ import {NgxQrcodeErrorCorrectionLevels} from "@techiediaries/ngx-qrcode/lib/qrco
 @Component({
   selector: 'jhi-tessera-qrcode',
   templateUrl: './tessera-qrcode.component.html',
+  styleUrls: ['./tessera-qrcode.component.scss'],
 })
 export class TesseraQrcodeComponent implements OnInit {
   title = 'app';

@@ -1,7 +1,17 @@
 <div style="margin-top: 24px; margin-left: 12px; margin-right: 12px">
-  <h2 id="page-heading" fxLayout="row" fxLayoutAlign="space-between stretch">
-    <span jhiTranslate="benzappApp.stazione.home.title">Rifornimentos</span>
 
+
+  <h2 id="page-heading" fxLayout="row" fxLayoutAlign="space-between stretch">
+
+    <div fxLayout="row" fxLayoutAlign="start center" style="padding-left: 24px">
+      <mat-icon>list</mat-icon>&nbsp;
+      <span jhiTranslate="benzappApp.stazione.home.title">Rifornimentos</span>
+    </div>
+
+    <button mat-stroked-button color="primary">
+      <mat-icon>refresh</mat-icon>
+      <span jhiTranslate="benzappApp.rifornimento.home.refreshListLabel">Refresh List</span>
+    </button>
   </h2>
 
   <jhi-alert-error></jhi-alert-error>

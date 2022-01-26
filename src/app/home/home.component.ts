@@ -1,13 +1,10 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {Subscription} from 'rxjs';
 import {Account} from "../core/auth/account.model";
 import {AccountService} from "../core/auth/account.service";
 import {RemoteConfigService} from "../core/config/remote-config.service";
 import {FcmMessagingService} from "../core/fcm/fcm-messaging.service";
-import {SwUpdate, SwPush} from '@angular/service-worker';
-import {environment} from "../../environments/environment";
-import {AngularFireMessaging} from "@angular/fire/compat/messaging";
 import {mergeMapTo} from 'rxjs/operators';
 
 

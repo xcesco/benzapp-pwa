@@ -13,6 +13,7 @@ import {ITEMS_PER_PAGE} from "../../../config/pagination.constants";
 @Component({
   selector: 'jhi-rifornimento',
   templateUrl: './rifornimento.component.html',
+  styleUrls: ['./rifornimento.component.scss'],
 })
 export class RifornimentoComponent implements OnInit {
   rifornimentos?: IRifornimento[];
