@@ -1,14 +1,14 @@
 <div style="margin-top: 24px; margin-left: 12px; margin-right: 12px">
-  <h2 id="page-heading" data-cy="TesseraHeading">
+  <h2 id="page-heading" fxLayout="row" fxLayoutAlign="space-between stretch">
     <span jhiTranslate="benzappApp.tessera.home.title">Tesseras</span>
 
-    <div class="d-flex justify-content-end">
+    <div>
       <button mat-stroked-button color="primary" [disabled]="isLoading" (click)="loadPage()">
         <mat-icon [ngClass]="{ 'fa-spin': isLoading }">refresh</mat-icon>
         <span jhiTranslate="benzappApp.rifornimento.home.refreshListLabel">Refresh List</span>
       </button>
-
     </div>
+
   </h2>
 
 

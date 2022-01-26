@@ -1,14 +1,11 @@
 <div style="margin-top: 24px; margin-left: 12px; margin-right: 12px">
-  <h2 id="page-heading" data-cy="RifornimentoHeading">
+  <h2 id="page-heading" fxLayout="row" fxLayoutAlign="space-between stretch">
     <span jhiTranslate="benzappApp.rifornimento.home.title">Rifornimentos</span>
 
-    <div class="d-flex justify-content-end">
-      <button mat-stroked-button color="primary" [disabled]="isLoading" (click)="loadPage()">
-        <mat-icon [ngClass]="{ 'fa-spin': isLoading }">refresh</mat-icon>
-        <span jhiTranslate="benzappApp.rifornimento.home.refreshListLabel">Refresh List</span>
-      </button>
-
-    </div>
+    <button mat-stroked-button color="primary" [disabled]="isLoading" (click)="loadPage()">
+      <mat-icon [ngClass]="{ 'fa-spin': isLoading }">refresh</mat-icon>
+      <span jhiTranslate="benzappApp.rifornimento.home.refreshListLabel">Refresh List</span>
+    </button>
   </h2>
 
   <jhi-alert-error></jhi-alert-error>

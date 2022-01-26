@@ -41,11 +41,11 @@
 
 <mat-menu #menuAccount="matMenu">
   <button *ngIf="!accountAuthenticated" mat-menu-item (click)="login()">
-    <mat-icon>notifications_off</mat-icon>
+    <mat-icon>login</mat-icon>
     <span jhiTranslate="global.menu.account.login">Sign in</span>
   </button>
   <button *ngIf="accountAuthenticated" mat-menu-item (click)="logout()">
-    <mat-icon>notifications_off</mat-icon>
+    <mat-icon>logout</mat-icon>
     <span jhiTranslate="global.menu.account.logout">Sign out</span>
   </button>
 </mat-menu>

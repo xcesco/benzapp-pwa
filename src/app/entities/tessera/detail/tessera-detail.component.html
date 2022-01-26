@@ -1,15 +1,13 @@
 <div style="margin-top: 24px; margin-left: 12px; margin-right: 12px">
     <div *ngIf="tessera" >
 
-      <h2 data-cy="tesseraDetailsHeading">
+      <h2 data-cy="tesseraDetailsHeading" fxLayout="row" fxLayoutAlign="space-between stretch">
         <span jhiTranslate="benzappApp.tessera.detail.title">Tessera</span>
 
-        <div class="d-flex justify-content-end">
         <button mat-stroked-button color="primary" (click)="previousState()">
           <mat-icon>arrow_back</mat-icon>
           <span jhiTranslate="entity.action.back">Back</span>
         </button>
-        </div>
 
       </h2>
 

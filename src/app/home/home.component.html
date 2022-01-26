@@ -1,23 +1,26 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-6">
-      <h1 class="display-4" jhiTranslate="home.title">Welcome, Java Hipster!</h1>
+<div style="margin-top: 24px; margin-left: 12px; margin-right: 12px; padding-bottom: 24px">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h1 class="display-4" jhiTranslate="home.title">Welcome, Java Hipster!</h1>
 
-      <p class="lead" jhiTranslate="home.subtitle">This is your homepage</p>
+        <p class="lead" jhiTranslate="home.subtitle">This is your homepage</p>
 
-      <button class="btn btn-outline-primary" (click)="requestPermission()">
-        Remote config: {{remoteConfigService.backendBaseUrl}}
-      </button>
+        <button class="btn btn-outline-primary" (click)="requestPermission()">
+          Remote config: {{remoteConfigService.backendBaseUrl}}
+        </button>
 
-    </div>
-    <div class="col-md-6" style="margin-top: 24px">
-      <div [ngSwitch]="isAuthenticated()">
-        <div class="alert alert-success" *ngSwitchCase="true">
-          <span id="home-logged-message" *ngIf="account" jhiTranslate="home.logged.message" [translateValues]="{ username: account.login }"
-            >You are logged in as user "{{ account.login }}".</span
+      </div>
+      <div class="col-md-6" style="margin-top: 24px">
+        <div [ngSwitch]="isAuthenticated()">
+          <div class="alert alert-success" *ngSwitchCase="true">
+          <span id="home-logged-message" *ngIf="account" jhiTranslate="home.logged.message"
+                [translateValues]="{ username: account.login }"
+          >You are logged in as user "{{ account.login }}".</span
           >
-        </div>
+          </div>
 
+        </div>
       </div>
     </div>
   </div>
