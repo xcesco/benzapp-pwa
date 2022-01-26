@@ -7,9 +7,10 @@ import {RifornimentoDeleteDialogComponent} from './delete/rifornimento-delete-di
 import {RifornimentoRoutingModule} from './route/rifornimento-routing.module';
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
+import {FlexLayoutModule} from "@angular/flex-layout";
 
 @NgModule({
-  imports: [SharedModule, RifornimentoRoutingModule, MatButtonModule, MatIconModule],
+  imports: [SharedModule, RifornimentoRoutingModule, MatButtonModule, MatIconModule, FlexLayoutModule],
   declarations: [
     RifornimentoComponent,
     RifornimentoDetailComponent,
