@@ -33,6 +33,7 @@
     "@ng-bootstrap/ng-bootstrap": "^11.0.0",
     "@ngx-translate/core": "^14.0.0",
     "@ngx-translate/http-loader": "^7.0.0",
+    "@techiediaries/ngx-qrcode": "^9.1.0",
     "@zxing/browser": "^0.0.10",
     "ajv": "^8.9.0",
     "bootstrap": "^5.1.3",

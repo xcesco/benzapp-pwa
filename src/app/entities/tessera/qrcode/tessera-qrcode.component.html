@@ -1,0 +1,41 @@
+<div style="margin-top: 24px; margin-left: 12px; margin-right: 12px">
+  <div *ngIf="tessera">
+
+    <h2 data-cy="tesseraDetailsHeading">
+      <span jhiTranslate="benzappApp.tessera.detail.title-qr">QR Code </span>
+
+      <div class="d-flex justify-content-end">
+        <button mat-stroked-button color="primary" (click)="previousState()">
+          <mat-icon>arrow_back</mat-icon>
+          <span jhiTranslate="entity.action.back">Back</span>
+        </button>
+      </div>
+
+    </h2>
+
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+      <div fxLayout fxFill fxLayoutAlign="space-around center">
+        <ngx-qrcode [width]=500
+                    [elementType]="elementType"
+                    [value]="value"
+        >
+        </ngx-qrcode>
+      </div>
+
+    <mat-form-field style="margin: 12px" appearance="fill">
+      <mat-label><span jhiTranslate="benzappApp.tessera.targa">Targa</span></mat-label>
+      <input readonly matInput value="{{ tessera.targa }}">
+    </mat-form-field>
+
+    <mat-form-field style="margin: 12px" appearance="fill">
+      <mat-label><span jhiTranslate="benzappApp.tessera.codice">Codice</span></mat-label>
+      <input readonly matInput value="{{ tessera.codice }}">
+    </mat-form-field>
+
+
+  </div>
+</div>

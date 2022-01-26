@@ -15,7 +15,8 @@
         "question": "Sei sicuro di volere eliminare la tessera {{ id }}?"
       },
       "detail": {
-        "title": "Tessera"
+        "title": "Tessera",
+        "title-qr": "QRCode"
       },
       "id": "ID",
       "codice": "Codice",

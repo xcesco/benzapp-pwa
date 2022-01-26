@@ -5,6 +5,8 @@ import {TesseraComponent} from '../list/tessera.component';
 import {TesseraDetailComponent} from '../detail/tessera-detail.component';
 import {TesseraRoutingResolveService} from './tessera-routing-resolve.service';
 import {UserRouteAccessService} from "../../../core/auth/user-route-access.service";
+import {TesseraQrcodeComponent} from "../qrcode/tessera-qrcode.component";
+import {DelegaRoutingResolveService} from "./delega-routing-resolve.service";
 
 const tesseraRoute: Routes = [
   {
@@ -20,6 +22,22 @@ const tesseraRoute: Routes = [
     component: TesseraDetailComponent,
     resolve: {
       tessera: TesseraRoutingResolveService,
+    },
+    canActivate: [UserRouteAccessService],
+  },
+  {
+    path: ':id/qrcode',
+    component: TesseraQrcodeComponent,
+    resolve: {
+      tessera: TesseraRoutingResolveService,
+    },
+    canActivate: [UserRouteAccessService],
+  },
+  {
+    path: ':id/qrcode-delega',
+    component: TesseraQrcodeComponent,
+    resolve: {
+      tessera: DelegaRoutingResolveService,
     },
     canActivate: [UserRouteAccessService],
   }
