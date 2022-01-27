@@ -10,9 +10,10 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatListModule} from "@angular/material/list";
 import {MatButtonModule} from "@angular/material/button";
 import {FlexLayoutModule} from "@angular/flex-layout";
+import {MatCardModule} from "@angular/material/card";
 
 @NgModule({
-    imports: [SharedModule, StazioneRoutingModule, GoogleMapsModule, MatIconModule, MatListModule, MatButtonModule, FlexLayoutModule],
+    imports: [SharedModule, StazioneRoutingModule, GoogleMapsModule, MatIconModule, MatListModule, MatButtonModule, FlexLayoutModule, MatCardModule],
   declarations: [
     StazioneComponent,
     StazioneDetailComponent,

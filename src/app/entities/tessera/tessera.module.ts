@@ -14,9 +14,10 @@ import {MatInputModule} from "@angular/material/input";
 import {TesseraQrcodeComponent} from "./qrcode/tessera-qrcode.component";
 import {NgxQRCodeModule} from "@techiediaries/ngx-qrcode";
 import {FlexLayoutModule} from "@angular/flex-layout";
+import {MatCardModule} from "@angular/material/card";
 
 @NgModule({
-  imports: [SharedModule, TesseraRoutingModule, MatIconModule, MatListModule, MatButtonModule, MatChipsModule, MatFormFieldModule, MatInputModule, NgxQRCodeModule, FlexLayoutModule],
+    imports: [SharedModule, TesseraRoutingModule, MatIconModule, MatListModule, MatButtonModule, MatChipsModule, MatFormFieldModule, MatInputModule, NgxQRCodeModule, FlexLayoutModule, MatCardModule],
   declarations: [TesseraComponent, TesseraDetailComponent, TesseraDeleteDialogComponent, TesseraQrcodeComponent],
   entryComponents: [TesseraDeleteDialogComponent],
 })

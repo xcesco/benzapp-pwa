@@ -1,62 +1,60 @@
-<div>
-  <h2 id="page-heading" fxLayout="row" fxLayoutAlign="space-between center">
+<mat-card style="margin: 12px">
 
-    <div fxLayout="row" fxLayoutAlign="start center" style="padding-left: 24px">
+  <mat-card-header fxLayout="row" fxFlexAlign="center center">
+    <div mat-card-avatar>
       <mat-icon>local_gas_station</mat-icon>&nbsp;
-      <span jhiTranslate="benzappApp.rifornimento.home.title">Rifornimentos</span>
     </div>
+    <mat-card-title><span jhiTranslate="benzappApp.rifornimento.home.title">Rifornimentos</span>
+    </mat-card-title>
 
+  </mat-card-header>
+
+  <mat-card-actions fxLayout="row wrap" fxLayoutAlign="end center" fxLayoutGap="20px">
     <button mat-stroked-button color="primary" [disabled]="isLoading" (click)="loadPage()">
       <mat-icon [ngClass]="{ 'fa-spin': isLoading }">refresh</mat-icon>
       <span jhiTranslate="benzappApp.rifornimento.home.refreshListLabel">Refresh List</span>
     </button>
-  </h2>
+  </mat-card-actions>
 
-  <jhi-alert-error></jhi-alert-error>
+  <mat-card-content *ngIf="rifornimentos">
+    <mat-list>
+      <mat-list-item *ngFor="let elem of rifornimentos">
 
-  <jhi-alert></jhi-alert>
+        <h3 matLine style="font-weight: bold" fxLayout="row" fxLayoutAlign="space-between stretch">
+          <div>{{elem.tessera!.targa}}</div>
+          <div style="text-align: end;">{{ elem?.data?.format('DD/MM/YYYY, hh:mm') }}</div>
+        </h3>
+        <h6 matLine>{{elem.gestore!.indirizzo}}</h6>
+        <h6 matLine><span>Pagato {{((elem.prezzoAlLitro! - elem.sconto!) * elem.litriErogati!).toFixed(2)}} €</span>&nbsp;&nbsp;<span>Erogato {{(elem.litriErogati! * 1).toFixed(2)}}
+          L.</span></h6>
 
-  <div class="alert alert-warning" id="no-result" *ngIf="rifornimentos?.length === 0">
-    <span jhiTranslate="benzappApp.rifornimento.home.notFound">No rifornimentos found</span>
-  </div>
+        <button color="primary"
+                mat-icon-button
+                [routerLink]="['/rifornimento', elem.id, 'view']"
+        >
+          <mat-icon aria-hidden="false">arrow_forward</mat-icon>
+        </button>
 
+      </mat-list-item>
+    </mat-list>
 
-  <mat-list>
-    <mat-list-item *ngFor="let elem of rifornimentos">
+    <div *ngIf="rifornimentos && rifornimentos.length > 0">
+      <div class="row justify-content-center">
+        <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+      </div>
 
-      <h3 matLine style="font-weight: bold" fxLayout="row" fxLayoutAlign="space-between stretch">
-        <div>{{elem.tessera!.targa}}</div>
-        <div style="text-align: end;">{{ elem?.data?.format('DD/MM/YYYY, hh:mm') }}</div>
-      </h3>
-      <h6 matLine>{{elem.gestore!.indirizzo}}</h6>
-      <h6 matLine><span>Pagato {{((elem.prezzoAlLitro! - elem.sconto!) * elem.litriErogati!).toFixed(2)}} €</span>&nbsp;&nbsp;<span>Erogato {{(elem.litriErogati! * 1).toFixed(2)}}
-        L.</span></h6>
-
-      <button color="primary"
-              mat-icon-button
-              [routerLink]="['/rifornimento', elem.id, 'view']"
-      >
-        <mat-icon aria-hidden="false">arrow_forward</mat-icon>
-      </button>
-
-    </mat-list-item>
-  </mat-list>
-
-  <div *ngIf="rifornimentos && rifornimentos.length > 0">
-    <div class="row justify-content-center">
-      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+      <div class="row justify-content-center">
+        <ngb-pagination
+          [collectionSize]="totalItems"
+          [(page)]="ngbPaginationPage"
+          [pageSize]="itemsPerPage"
+          [maxSize]="5"
+          [rotate]="true"
+          [boundaryLinks]="true"
+          (pageChange)="loadPage($event)"
+        ></ngb-pagination>
+      </div>
     </div>
+  </mat-card-content>
+</mat-card>
 
-    <div class="row justify-content-center">
-      <ngb-pagination
-        [collectionSize]="totalItems"
-        [(page)]="ngbPaginationPage"
-        [pageSize]="itemsPerPage"
-        [maxSize]="5"
-        [rotate]="true"
-        [boundaryLinks]="true"
-        (pageChange)="loadPage($event)"
-      ></ngb-pagination>
-    </div>
-  </div>
-</div>

@@ -1,17 +1,74 @@
-<div style="margin-top: 24px; margin-left: 12px; margin-right: 12px">
-  <h2 id="page-heading" fxLayout="row" fxLayoutAlign="space-between stretch">
+<mat-card style="margin: 12px">
 
-    <div fxLayout="row" fxLayoutAlign="start center" style="padding-left: 24px">
+  <mat-card-header fxLayout="row" fxFlexAlign="center center">
+    <div mat-card-avatar>
       <mat-icon>directions_car</mat-icon>
-      &nbsp;<span jhiTranslate="benzappApp.tessera.home.title">Tesseras</span>
     </div>
+    <mat-card-title><span jhiTranslate="benzappApp.tessera.home.title">Tesseras</span>
+    </mat-card-title>
 
-    <div>
-      <button mat-stroked-button color="primary" [disabled]="isLoading" (click)="loadPage()">
-        <mat-icon [ngClass]="{ 'fa-spin': isLoading }">refresh</mat-icon>
-        <span jhiTranslate="benzappApp.rifornimento.home.refreshListLabel">Refresh List</span>
-      </button>
-    </div>
+  </mat-card-header>
+
+  <mat-card-actions fxLayout="row wrap" fxLayoutAlign="end center" fxLayoutGap="20px">
+    <button mat-stroked-button color="primary" [disabled]="isLoading" (click)="loadPage()">
+      <mat-icon [ngClass]="{ 'fa-spin': isLoading }">refresh</mat-icon>
+      <span jhiTranslate="benzappApp.rifornimento.home.refreshListLabel">Refresh List</span>
+    </button>
+  </mat-card-actions>
+
+  <mat-card-content>
+
+    <mat-list>
+      <mat-list-item *ngFor="let elem of tesseras">
+        <img matListAvatar width="64" [src]="'data:' + elem.immagineContentType + ';base64,' + elem.immagine">
+        <h3 matLine style="font-weight: bold"> {{elem.targa}} </h3>
+        <h6 matLine>{{elem.carburante}}</h6>
+
+        <button color="primary"
+                mat-icon-button
+                [routerLink]="['/tessera', elem.id, 'qrcode']"
+                style="margin-right: 8px"
+        >
+          <mat-icon aria-hidden="false">qr_code</mat-icon>
+        </button>
+        <button color="primary"
+                mat-icon-button
+                [routerLink]="['/tessera', elem.id, 'view']"
+        >
+          <mat-icon aria-hidden="false">arrow_forward</mat-icon>
+        </button>
+
+      </mat-list-item>
+      <mat-list-item *ngFor="let elem of deleghe">
+        <img matListAvatar [src]="'data:' + elem.immagineContentType + ';base64,' + elem.immagine">
+        <h3 matLine style="font-weight: bold"> {{elem.targa}} </h3>
+        <h6 matLine>{{elem.carburante}}</h6>
+
+        <mat-chip-list style="margin-right: 8px">
+          <mat-chip color="accent">Delega</mat-chip>
+        </mat-chip-list>
+
+        <button color="primary"
+                mat-icon-button
+                [routerLink]="['/tessera', elem.id, 'qrcode-delega']"
+                style="margin-right: 8px"
+        >
+          <mat-icon aria-hidden="false">qr_code</mat-icon>
+        </button>
+        <button color="primary" disabled="true"
+                mat-icon-button
+                [routerLink]="['/tessera', elem.id, 'view']"
+        >
+          <mat-icon aria-hidden="false">arrow_forward</mat-icon>
+        </button>
+
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>
+
+<div style="margin-top: 24px; margin-left: 12px; margin-right: 12px">
+  <h2 id="page-heading">
 
   </h2>
 
@@ -24,50 +81,5 @@
     <span jhiTranslate="benzappApp.tessera.home.notFound">No tesseras found</span>
   </div>
 
-  <mat-list>
-    <mat-list-item *ngFor="let elem of tesseras">
-      <img matListAvatar width="64"  [src]="'data:' + elem.immagineContentType + ';base64,' + elem.immagine">
-      <h3 matLine style="font-weight: bold"> {{elem.targa}} </h3>
-      <h6 matLine>{{elem.carburante}}</h6>
 
-      <button color="primary"
-        mat-icon-button
-        [routerLink]="['/tessera', elem.id, 'qrcode']"
-              style="margin-right: 8px"
-      >
-        <mat-icon aria-hidden="false">qr_code</mat-icon>
-      </button>
-      <button color="primary"
-        mat-icon-button
-        [routerLink]="['/tessera', elem.id, 'view']"
-      >
-        <mat-icon aria-hidden="false">arrow_forward</mat-icon>
-      </button>
-
-    </mat-list-item>
-    <mat-list-item *ngFor="let elem of deleghe">
-      <img matListAvatar [src]="'data:' + elem.immagineContentType + ';base64,' + elem.immagine">
-      <h3 matLine style="font-weight: bold"> {{elem.targa}} </h3>
-      <h6 matLine>{{elem.carburante}}</h6>
-
-      <mat-chip-list style="margin-right: 8px">
-        <mat-chip color="accent">Delega</mat-chip>
-      </mat-chip-list>
-
-      <button color="primary"
-              mat-icon-button
-              [routerLink]="['/tessera', elem.id, 'qrcode-delega']"
-              style="margin-right: 8px"
-      >
-        <mat-icon aria-hidden="false">qr_code</mat-icon>
-      </button>
-      <button color="primary" disabled="true"
-              mat-icon-button
-              [routerLink]="['/tessera', elem.id, 'view']"
-      >
-        <mat-icon aria-hidden="false">arrow_forward</mat-icon>
-      </button>
-
-    </mat-list-item>
-  </mat-list>
 </div>

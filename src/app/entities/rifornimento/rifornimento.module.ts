@@ -10,9 +10,12 @@ import {MatIconModule} from "@angular/material/icon";
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {MatListModule} from "@angular/material/list";
 import {MatChipsModule} from "@angular/material/chips";
+import {MatCardModule} from "@angular/material/card";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
 
 @NgModule({
-  imports: [SharedModule, RifornimentoRoutingModule, MatButtonModule, MatIconModule, FlexLayoutModule, MatListModule, MatChipsModule],
+  imports: [SharedModule, RifornimentoRoutingModule, MatButtonModule, MatIconModule, FlexLayoutModule, MatListModule, MatChipsModule, MatCardModule, MatFormFieldModule, MatInputModule],
   declarations: [
     RifornimentoComponent,
     RifornimentoDetailComponent,

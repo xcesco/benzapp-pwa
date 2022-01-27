@@ -1,40 +1,44 @@
-<div style="margin-top: 24px;" *ngIf="tessera">
+<mat-card style="margin: 12px">
 
-  <h2 id="page-heading" fxLayout="row" fxLayoutAlign="space-between center">
-
-    <div fxLayout="row" fxLayoutAlign="start center" style="padding-left: 24px">
-      <mat-icon>qr_code</mat-icon>&nbsp;
-      <span jhiTranslate="benzappApp.tessera.detail.title-qr">QR Code </span>
-    </div>
-
-    <div class="d-flex justify-content-end">
-      <button mat-stroked-button color="primary" (click)="previousState()">
+  <mat-card-header>
+    <div mat-card-avatar>
+      <button mat-icon-button color="primary" (click)="previousState()">
         <mat-icon>arrow_back</mat-icon>
-        <span jhiTranslate="entity.action.back">Back</span>
       </button>
     </div>
-  </h2>
+    <mat-card-title fxLayout fxFill fxLayoutAlign="space-around center"><span jhiTranslate="benzappApp.tessera.detail.title-qr">QR Code </span>
+    </mat-card-title>
+  </mat-card-header>
 
-  <div fxLayout fxLayoutAlign="center center" style="min-height: 400px">
-    <ngx-qrcode [width]="380"
-                [elementType]="elementType"
-                [value]="value"
-    >
-    </ngx-qrcode>
-  </div>
+  <mat-card-content *ngIf="tessera">
+    <div class="d-flex justify-content-end">
+      <button mat-button color="primary" (click)="share(qrcode)">
+        <mat-icon>share</mat-icon>
+        <span>Share</span>
+      </button>
+    </div>
 
-  <div fxLayout>
-    <mat-form-field style="margin: 12px" appearance="fill" fxFlex="45">
-      <mat-label><span jhiTranslate="benzappApp.tessera.targa">Targa</span></mat-label>
-      <input readonly matInput value="{{ tessera.targa }}">
-    </mat-form-field>
+    <div fxLayout fxLayoutAlign="center center" style="min-height: 400px">
+      <ngx-qrcode #qrcode [width]="360"
+                  [elementType]="elementType"
+                  [value]="value"
+      >
+      </ngx-qrcode>
+    </div>
 
-    <mat-form-field style="margin: 12px" appearance="fill" fxFlex="45">
-      <mat-label><span jhiTranslate="benzappApp.tessera.codice">Codice</span></mat-label>
-      <input readonly matInput value="{{ tessera.codice }}">
-    </mat-form-field>
+    <div fxLayout>
+      <mat-form-field style="margin: 12px" appearance="fill" fxFlex="45">
+        <mat-label><span jhiTranslate="benzappApp.tessera.targa">Targa</span></mat-label>
+        <input readonly matInput value="{{ tessera.targa }}">
+      </mat-form-field>
 
-  </div>
+      <mat-form-field style="margin: 12px" appearance="fill" fxFlex="45">
+        <mat-label><span jhiTranslate="benzappApp.tessera.codice">Codice</span></mat-label>
+        <input readonly matInput value="{{ tessera.codice }}">
+      </mat-form-field>
+
+    </div>
+  </mat-card-content>
+</mat-card>
 
 
-</div>

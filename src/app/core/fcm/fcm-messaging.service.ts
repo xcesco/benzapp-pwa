@@ -10,6 +10,8 @@ import {environment} from "../../../environments/environment";
 import {AngularFireMessaging, AngularFireMessagingModule} from "@angular/fire/compat/messaging";
 import {RemoteConfigService} from "../config/remote-config.service";
 import {LocalStorageService, SessionStorageService} from "ngx-webstorage";
+import {MatSnackBar} from "@angular/material/snack-bar";
+import {RifornimentoService} from "../../entities/rifornimento/service/rifornimento.service";
 
 @Injectable({providedIn: 'root'})
 export class FcmMessagingService {
@@ -23,7 +25,7 @@ export class FcmMessagingService {
     return this.fireMessaging.tokenChanges;
   }
 
-  constructor(private fireMessaging: AngularFireMessaging, private remoteConfigService: RemoteConfigService, private $localStorage: LocalStorageService) {
+  constructor(private fireMessaging: AngularFireMessaging, private remoteConfigService: RemoteConfigService, private $localStorage: LocalStorageService, private snackBar: MatSnackBar, private rifornimentoService: RifornimentoService) {
   }
 
   requestPermission(): Observable<NotificationPermission> {
@@ -31,15 +33,27 @@ export class FcmMessagingService {
   }
 
   init() {
+    console.log('fcm > registro listener');
     this.tokenSubscription = this.fireMessaging.getToken.subscribe(value => {
       console.log('fcm token > ', value)
       this.token = value;
       this.$localStorage.store('fcmToken', this.token);
+      this.snackBar.open('Registrato FCM token'+this.token, '',{
+        duration: 5000,
+      });
     });
 
-
     this.fireMessaging.messages.subscribe(nextMessage => {
-      console.log('fcm > message', nextMessage, nextMessage.data);
+
+      console.log('fcm > message', nextMessage);
+
+      // @ts-ignore
+      const message = nextMessage.notification.body;
+
+      // @ts-ignore
+      this.snackBar.open(message, '',{
+        duration: 5000,
+      });
     });
 
     this.fireMessaging.requestPermission.subscribe(permission => {

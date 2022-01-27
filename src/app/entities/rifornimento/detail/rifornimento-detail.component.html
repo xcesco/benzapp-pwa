@@ -1,64 +1,57 @@
-<div style="margin-top: 24px; margin-left: 12px; margin-right: 12px">
-  <div class="row justify-content-center">
-    <div class="col-8">
-      <div *ngIf="rifornimento">
-        <h2 fxLayout="row" fxLayoutAlign="space-between stretch">
-          <span jhiTranslate="benzappApp.rifornimento.detail.title">Rifornimento</span>
+<mat-card style="margin: 12px">
 
-          <button mat-stroked-button color="primary" (click)="previousState()">
-            <mat-icon>arrow_back</mat-icon>
-            <span jhiTranslate="entity.action.back">Back</span>
-          </button>
-        </h2>
-
-
-        <hr/>
-
-        <jhi-alert-error></jhi-alert-error>
-
-        <jhi-alert></jhi-alert>
-
-        <dl class="row-md jh-entity-details">
-          <dt><span jhiTranslate="global.field.id">ID</span></dt>
-          <dd>
-            <span>{{ rifornimento.id }}</span>
-          </dd>
-          <dt><span jhiTranslate="benzappApp.rifornimento.data">Data</span></dt>
-          <dd>
-            <span>{{ rifornimento.data | formatMediumDatetime }}</span>
-          </dd>
-          <dt><span jhiTranslate="benzappApp.rifornimento.litriErogati">Litri Erogati</span></dt>
-          <dd>
-            <span>{{ rifornimento.litriErogati }}</span>
-          </dd>
-          <dt><span jhiTranslate="benzappApp.rifornimento.sconto">Sconto</span></dt>
-          <dd>
-            <span>{{ rifornimento.sconto }}</span>
-          </dd>
-          <dt><span jhiTranslate="benzappApp.rifornimento.prezzoAlLitro">Prezzo Al Litro</span></dt>
-          <dd>
-            <span>{{ rifornimento.prezzoAlLitro }}</span>
-          </dd>
-          <dt><span jhiTranslate="benzappApp.rifornimento.tipoCarburante">Tipo Carburante</span></dt>
-          <dd>
-          <span
-            jhiTranslate="{{ 'benzappApp.TipoCarburante.' + rifornimento.tipoCarburante }}">{{ rifornimento.tipoCarburante }}</span>
-          </dd>
-          <dt><span jhiTranslate="benzappApp.rifornimento.gestore">Gestore</span></dt>
-          <dd>
-            <div *ngIf="rifornimento.gestore">
-              <a [routerLink]="['/gestore', rifornimento.gestore?.id, 'view']">{{ rifornimento.gestore?.id }}</a>
-            </div>
-          </dd>
-          <dt><span jhiTranslate="benzappApp.rifornimento.tessera">Tessera</span></dt>
-          <dd>
-            <div *ngIf="rifornimento.tessera">
-              <a [routerLink]="['/tessera', rifornimento.tessera?.id, 'view']">{{ rifornimento.tessera?.id }}</a>
-            </div>
-          </dd>
-        </dl>
-
-      </div>
+  <mat-card-header fxLayout="row" fxFlexAlign="center center">
+    <div mat-card-avatar>
+      <button mat-icon-button color="primary" (click)="previousState()">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
     </div>
-  </div>
-</div>
+    <mat-card-title fxLayout fxFill fxLayoutAlign="space-around center">
+      <span jhiTranslate="benzappApp.rifornimento.detail.title">Rifornimento</span>
+    </mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <div style="margin-top: 12px" fxLayout="row wrap" *ngIf="rifornimento">
+
+      <mat-form-field >
+        <mat-label><span jhiTranslate="benzappApp.rifornimento.data">Data</span></mat-label>
+        <input readonly matInput value="{{ rifornimento.data | formatMediumDatetime }}">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label><span jhiTranslate="benzappApp.rifornimento.gestore">Gestore</span></mat-label>
+        <input readonly matInput value="{{ rifornimento.gestore?.indirizzo }}">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label><span jhiTranslate="benzappApp.rifornimento.tessera">Tessera</span></mat-label>
+        <input readonly matInput value="{{ rifornimento.tessera?.targa}}">
+      </mat-form-field>
+
+      <mat-form-field  >
+        <mat-label><span jhiTranslate="benzappApp.rifornimento.litriErogati">Litri Erogati</span></mat-label>
+        <input readonly matInput value="{{ rifornimento.litriErogati }}">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label><span jhiTranslate="benzappApp.rifornimento.sconto">Sconto</span></mat-label>
+        <input readonly matInput value="{{ rifornimento.sconto }}">
+      </mat-form-field>
+
+      <mat-form-field  >
+        <mat-label><span jhiTranslate="benzappApp.rifornimento.prezzoAlLitro">Prezzo Al Litro</span></mat-label>
+        <input readonly matInput value="{{ rifornimento.prezzoAlLitro }}">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label><span jhiTranslate="benzappApp.rifornimento.tipoCarburante">Tipo Carburante</span></mat-label>
+        <input readonly matInput value="{{ rifornimento.tipoCarburante }}">
+      </mat-form-field>
+
+
+
+    </div>
+
+  </mat-card-content>
+</mat-card>

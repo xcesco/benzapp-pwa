@@ -6,6 +6,7 @@ import {AccountService} from "../core/auth/account.service";
 import {RemoteConfigService} from "../core/config/remote-config.service";
 import {FcmMessagingService} from "../core/fcm/fcm-messaging.service";
 import {mergeMapTo} from 'rxjs/operators';
+import {NgxQrcodeElementTypes} from "@techiediaries/ngx-qrcode";
 
 
 @Component({
@@ -16,10 +17,13 @@ import {mergeMapTo} from 'rxjs/operators';
 export class HomeComponent implements OnInit, OnDestroy {
   account: Account | null = null;
   authSubscription?: Subscription;
+  baseUrl: string;
+  elementType = NgxQrcodeElementTypes.URL;
 
-  constructor(private accountService: AccountService, private router: Router, public remoteConfigService: RemoteConfigService, private fcmMessagingService: FcmMessagingService) {
+  constructor(private accountService: AccountService, private router: Router, public remoteConfigService: RemoteConfigService, public fcmMessagingService: FcmMessagingService) {
     remoteConfigService.init();
     fcmMessagingService.init();
+    this.baseUrl=window.location.href;
   }
 
   requestPermission() {
